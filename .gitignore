@@ -4,8 +4,11 @@ target/
 !**/src/main/**
 !**/src/test/**
 
-### STS ###
-.apt_generated
+.mvn/
+mvnw
+mvnw.cmd
+
+### STS ###.apt_generated
 .classpath
 .factorypath
 .project
