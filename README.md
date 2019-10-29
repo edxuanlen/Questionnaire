@@ -1,5 +1,7 @@
 # 调查问卷
 
+[Click me to jump to English version Readme](./README.en.md)
+
 ## 数据库结构
 
 **注意 coding=utf-8**
