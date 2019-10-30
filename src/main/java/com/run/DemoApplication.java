@@ -1,4 +1,4 @@
-package com.example.questionaire;
+package com.run;
 
 
 import org.springframework.boot.SpringApplication;
