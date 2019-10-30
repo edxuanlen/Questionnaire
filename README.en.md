@@ -45,3 +45,7 @@
         - Int unsigned not null auto increment primary key
     - Option ID
         - Int not null foreign key
+        
+##Onstage
+- login.jsp
+    - Log in and jump to the backstage interface
