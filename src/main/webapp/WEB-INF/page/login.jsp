@@ -26,7 +26,7 @@
     </style>
 </head>
 <body>
-<form>
+<form action="/LoginCheck" method="post" >
     <div style = "height:200px"></div>
     <div id = "login_box">
         <div style = "height:10px"></div>
