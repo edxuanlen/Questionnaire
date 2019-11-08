@@ -43,7 +43,7 @@ classes
 
 **注意 coding=utf-8**
 
-- 问卷表 questionaire
+- 问卷表 questionnaire
     - 问卷编号 id
         - bigint unsigned not null auto_increment 主键
     - 问卷名 name
