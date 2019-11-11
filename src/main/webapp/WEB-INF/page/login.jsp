@@ -32,7 +32,7 @@
         <div style = "height:10px"></div>
         <h2>后台管理系统登陆</h2>
         <div style = "height:15px"></div>
-        <input name = "username" class = "input_box" placeholder="请输入用户名"/>
+        <input name = "id" class = "input_box" placeholder="请输入用户名"/>
         <div style ="height:20px"></div>
         <input name = "password" class = "input_box" placeholder="请输入密码" type = "password"/>
         <div style = "height:20px"></div>

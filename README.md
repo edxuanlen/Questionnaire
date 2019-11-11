@@ -21,7 +21,7 @@
 一. 代码层结构
 com.run  
 1. 启动类(QuestionaireApplication.java）放在根目录com.run包下  
-2. 实体类（domain） com.run.pojo
+2. 实体类（pojo） com.run.pojo
 3. 数据接口访问层(Dao) com.run.mapper 
 4. 数据服务接口层（Service）com.run.service
 5. 数据服务实现层（Service Implements） com.run.serviceImpl
@@ -38,6 +38,8 @@ com.run
 2. mybatis配置文件：resources/mapper/config/
 根目录: webapp
 classes 
+statis: html js css
+
 
 ## 数据库结构
 
@@ -117,7 +119,7 @@ classes
         application.properties
         ``` properties
         spring.datasource.url=jdbc:mysql://120.79.224.142:3306/questionaire
-        spring.datasource.username=username
+        spring.datasource.id=id
         spring.datasource.password=password
         ```
        
@@ -173,6 +175,7 @@ classes
 | @ExtendWith | 用于注册自定义扩展，该注解可以继承 |
 
 
+
 ## 前端安全
 
 ### Xss 攻击
@@ -185,3 +188,4 @@ classes
 添加token 进行验证
 
 
+### JSR303 数据校验
