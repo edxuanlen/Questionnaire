@@ -35,7 +35,7 @@ class UserTest {
         filed.setAccessible(true);
         filed.set(user, "root");
 
-        final String result = user.getId();
+        final String result = user.getUsername();
         assertEquals("root", result, "don't match");
 
     }
@@ -45,12 +45,12 @@ class UserTest {
     }
 
     @Test
-    void setid()  throws Exception{
+    void setid() {
         final User user = new User();
-        user.setId("root");
+        user.setUsername("root");
 //        final Field filed = user.getClass().getDeclaredField("id");
 //        filed.setAccessible(true);
-        assertEquals("root", user.getId(), "don't match");
+        assertEquals("root", user.getUsername(), "don't match");
     }
 
     @Test
