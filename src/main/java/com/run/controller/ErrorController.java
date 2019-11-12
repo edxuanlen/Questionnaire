@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.ServletSecurityElement;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -13,19 +14,18 @@ import javax.servlet.http.HttpServletRequest;
  * @Version 1.0
  **/
 
-
 @Controller
-public class ErrorController implements org.springframework.boot.web.servlet.error.ErrorController {
-    @RequestMapping("/error")
-    public String error(HttpServletRequest request){
-//        return "别问，问就是404";
+@RequestMapping("/error")
+public class ErrorController {
+
+    /**
+     * 404页面
+     */
+    @GetMapping(value = "/404")
+    public String error404() {
         return "404";
     }
 
-    @Override
-    public String getErrorPath() {
-        return "/error";
-    }
 }
 
 
