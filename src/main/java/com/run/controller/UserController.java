@@ -22,12 +22,12 @@ public class UserController {
     @Autowired
     UserMapper userMapper;
 
-    @GetMapping(value = "/user/{id}")
-    public User getUser(@PathVariable("id") String id) {
-
+    @GetMapping(value = "/user/{username}")
+    public User getUser(@PathVariable(value = "username") String username) {
+//        return null;
 //        System.out.println(id);
 
-        User user = userMapper.getUserById(id);
+        User user = userMapper.getUserByUsername(username);
         System.out.println(user);
         return user;
 //        return userMapper.getUserByid(id);

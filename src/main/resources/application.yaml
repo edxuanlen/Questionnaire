@@ -1,5 +1,5 @@
 server:
   port: 8080
-#mybatis:
-#  config-location: classpath:mapper/mybatis-config.xml
-#  mapper-locations: classpath:mapper/config/*.xml
+mybatis:
+  config-location: classpath:mapper/mybatis-config.xml
+  mapper-locations: classpath:mapper/config/*.xml
