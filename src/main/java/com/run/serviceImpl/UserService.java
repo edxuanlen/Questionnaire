@@ -14,7 +14,9 @@ public class UserService implements UserDetailsService {
     @Autowired
     UserMapper userMapper;
 
-    // 重写 loadUserByUsername 方法获得 userdetails  类型用户
+    /**
+    * 重写 loadUserByUsername 方法获得 userdetails 类型用户
+    */
     @Override
     public UserDetails loadUserByUsername(String username) {
         User user = userMapper.getUserByUsername(username);

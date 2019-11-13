@@ -2,7 +2,6 @@ package com.run.config;
 
 import com.run.serviceImpl.UserService;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -33,14 +32,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-//        authenticationProvider.setUserDetailsService(customUserService());
-//        authenticationProvider.setPasswordEncoder(passwordEncoder());
-//        auth.authenticationProvider(authenticationProvider);
-//    }
-
     // 认证规则
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -56,8 +47,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/").permitAll()
             .antMatchers("/user/**").hasRole("root")
             .antMatchers("/management/**").hasRole("root")
-            .and()
-            .rememberMe().key(KEY).tokenValiditySeconds(1209600);
+            .antMatchers("/questionnaire/**").permitAll()
+            .and().rememberMe().key(KEY).tokenValiditySeconds(1209600);
             // 记住两周
 
 

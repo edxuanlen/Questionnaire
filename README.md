@@ -52,7 +52,7 @@ statis: html js css
         - bigint unsigned not null auto_increment 主键
     - 问卷名 name
         - varchar(20) not null
-    - 问卷描述 describe
+    - 问卷描述 qn_describe
         - text
     - 问卷创建时间 creat_time
         - datetime not null
@@ -65,24 +65,24 @@ statis: html js css
 - 问题表 question
     - 问题编号 q_id
         - int unsigned not null auto_increment 主键
-    - 问题描述 describe
+    - 问题描述 q_describe
         - text
     - 问卷编号 id
         - int not null 外键
     - 题型 question_type
         - enum('subjective', 'objective') not null
 
-- 选项表 option
+- 选项表 question_option
     - 选项编号 op_id
         - int unsigned not null auto_increment 主键
-    - 选项内容 describe
+    - 选项内容 op_describe
         - varchar(50)
     - 问题编号 q_id
         - int not null 外键
 
 - 主观题答案 subjective_question_answer
     - 答案编号 sub_q_id
-        - int unsigned not null auto_increment 主键
+        - int unsigned passwordnot null auto_increment 主键
     - 答案内容 content
         - text
 
