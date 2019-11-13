@@ -1,14 +1,12 @@
 package com.run.mapper;
-
-
-/*
- * @author edxuanlen
- */
-
 import com.run.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+
+/**
+ * @author edxuanlen
+ */
 @Mapper
 public interface UserMapper {
 

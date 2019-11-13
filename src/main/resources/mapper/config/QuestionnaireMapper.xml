@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.run.mapper.QuestionnaireMapper">
+    <select id="getQuestionnaireByName" resultType="com.run.pojo.Questionnaire">
+        select * from questionnaire where name = #{name}
+    </select>
+
+    <select id="getQuestionnaireById" resultType="com.run.pojo.Questionnaire">
+        select * from questionnaire where id = #{id}
+    </select>
+
+    <!--    <insert id="insertUser">-->
+    <!--        insert into user values (id = #{id}, password = #{passWord})-->
+    <!--    </insert>-->
+
+</mapper>

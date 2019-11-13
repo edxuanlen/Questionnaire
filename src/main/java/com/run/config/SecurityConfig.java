@@ -51,7 +51,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and().rememberMe().key(KEY).tokenValiditySeconds(1209600);
             // 记住两周
 
-
         http.csrf().disable();
         // 开启自动配置的登录功能
         http.formLogin().failureForwardUrl("/login?error").failureUrl("/login?error");
