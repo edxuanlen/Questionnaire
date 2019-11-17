@@ -11,7 +11,9 @@
         select * from questionnaire where id = #{id}
     </select>
 
-    <!--    <insert id="insertUser">-->
+    <select id="getQuestionnaireAll" resultType="com.run.pojo.Questionnaire">
+        select * from questionnaire
+    </select>    <!--    <insert id="insertUser">-->
     <!--        insert into user values (id = #{id}, password = #{passWord})-->
     <!--    </insert>-->
 

@@ -3,9 +3,6 @@ server:
 mybatis:
   config-location: classpath:mapper/mybatis-config.xml
   mapper-locations: classpath:mapper/config/*.xml
-#  configuration:
-#    map-underscore-to-camel-case: true
-
 spring:
   thymeleaf:
     check-template-location: true

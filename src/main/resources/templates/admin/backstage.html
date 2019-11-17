@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <style>
+        body{
+            background-color: #cde0e5;
+            text-align:center;
+        }
+        u{
+            font-size:20px;
+        }
+        #questionnaires_box{
+            text-align:center;
+            margin: 0 auto;
+            width : 75%;
+            background-color: white;
+            opacity: 0.8;
+            border-radius:10px;
+            box-shadow: 5px 5px 5px 5px #969899;
+        }
+        #content{
+            margin: 0 auto;
+        }
+    </style>
+    <title>后台管理</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div id="questionnaires_box">
+                    <div style="height: 14px;"></div>
+                    <div id="option_box" style="height:45px;">
+                        <input id="add_button" type="button" value="添加问卷" class="btn btn-default" onclick="Add()">
+    <!--                    <input id="del_button" type="button" value="删除问卷" class="btn btn-default">-->
+                    </div>
+                    <div id="content">
+                        <table id="questionnaires_table" class="table table-striped">
+                            <tr th:id="questionnaire + (${ques.id})" th:each="ques : ${allquestionnaire}">
+                                <td>
+                                    <a href="#"><u th:text="${ques.getName()}"></u></a>
+                                </td>
+                            </tr>
+
+                        </table>
+                        <div style="height: 14px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

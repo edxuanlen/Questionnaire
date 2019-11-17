@@ -8,7 +8,7 @@
     - Questionnaire ID
         - Int unsigned not null auto increment primary key
     - Questionnaire name
-        - Varchar (20) not null
+        - Varchar (100) not null
     - Questionnaire description
         -  text
     - Creation "time

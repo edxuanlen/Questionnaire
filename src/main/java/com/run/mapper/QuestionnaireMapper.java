@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import javax.swing.*;
 import java.math.BigInteger;
+import java.util.List;
 
 /**
  * @Author edxuanlen
@@ -31,7 +32,12 @@ public interface QuestionnaireMapper {
      * @throws Exception
      */
     Questionnaire getQuestionnaireById(BigInteger id) throws Exception;
-
+    /**
+     * 获取全部问卷信息
+     * @return Questionnaire entity
+     * @throws Exception
+     */
+    List<Questionnaire> getQuestionnaireAll() throws Exception;
     /**
      * 插入新的问卷
      * @param name

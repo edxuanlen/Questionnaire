@@ -51,7 +51,7 @@ statis: html js css
     - 问卷编号 id
         - bigint unsigned not null auto_increment 主键
     - 问卷名 name
-        - varchar(20) not null
+        - varchar(100) not null
     - 问卷描述 qn_describe
         - text
     - 问卷创建时间 creat_time
