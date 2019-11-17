@@ -20,4 +20,10 @@ public class Questionnaire {
     private Timestamp createTime;
     private Timestamp updateTime;
     private String status;
+
+    public void setId(String id) {
+        this.id = BigInteger.valueOf(Long.parseLong(id));
+    }
+
+
 }

@@ -3,6 +3,7 @@ package com.run.mapper;
 import com.run.pojo.Questionnaire;
 import org.apache.ibatis.annotations.Mapper;
 
+import javax.swing.*;
 import java.math.BigInteger;
 
 /**
@@ -15,17 +16,29 @@ import java.math.BigInteger;
 public interface QuestionnaireMapper {
 
     /**
+     * 通过问卷名称获取问卷实体
      * @param name
      * @return Questionnaire entity
-     * 通过问卷名称获取问卷实体
+     * @throws Exception
      */
-
-    Questionnaire getQuestionnaireByName(String name);
-    Questionnaire getQuestionnaireById(BigInteger id);
+    Questionnaire getQuestionnaireByName(String name) throws Exception;
 
 
+    /**
+     * 通过问卷编号获取问卷实体
+     * @param id
+     * @return Questionnaire entity
+     * @throws Exception
+     */
+    Questionnaire getQuestionnaireById(BigInteger id) throws Exception;
 
-
+    /**
+     * 插入新的问卷
+     * @param name
+     * @return Integer
+     * @throws Exception
+     */
+    Questionnaire insertQuestionnaire (String name) throws Exception;
 
 
 }

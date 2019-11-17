@@ -1,6 +1,6 @@
 package com.run.config;
 
-import com.run.serviceImpl.UserService;
+import com.run.serviceImpl.UserServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -24,7 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     UserDetailsService customUserService(){
-        return new UserService();
+        return new UserServiceImpl();
     }
 
     @Bean
