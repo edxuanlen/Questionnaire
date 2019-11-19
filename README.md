@@ -26,7 +26,7 @@ com.run
 2. 实体类（pojo） com.run.pojo
 3. 数据接口访问层(Dao) com.run.mapper 
 4. 数据服务接口层（Service）com.run.service
-5. 数据服务实现层（Service Implements） com.run.serviceImpl
+5. 数据服务实现层（Service Implements） com.run.serviceimpl
 6. 前端控制器层（Controller） com.run.controller
 7. 工具类库（utils）com.run.utils
 8. 配置类（config）com.run.config
@@ -145,13 +145,8 @@ statis: html js css
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>1.3.2</version>
         </dependency>
-       ``` 
-       
-       
-   
-   
-   
-   
+       ```
+
     
 ## 单元测试
 

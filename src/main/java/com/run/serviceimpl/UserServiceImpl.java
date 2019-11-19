@@ -1,4 +1,4 @@
-package com.run.serviceImpl;
+package com.run.serviceimpl;
 
 import com.run.mapper.UserMapper;
 import com.run.pojo.User;
@@ -14,11 +14,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserDetailsService {
 
-    @Autowired
-    UserMapper userMapper;
+
+    private UserMapper userMapper;
 
     /**
-    * 重写 loadUserByUsername 方法获得 userdetails 类型用户
+    * 重写 loadUserByUsername 方法获得 user details 类型用户
     */
     @Override
     public UserDetails loadUserByUsername(String username) {
@@ -26,7 +26,6 @@ public class UserServiceImpl implements UserDetailsService {
         if ( user != null ) {
             return user;
         } else {
-//            System.out.println("NO");
             throw new UsernameNotFoundException("admin: " + username + " do not exist!");
         }
     }

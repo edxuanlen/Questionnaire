@@ -1,6 +1,6 @@
 package com.run.config;
 
-import com.run.serviceImpl.UserServiceImpl;
+import com.run.serviceimpl.UserServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -32,7 +32,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    // 认证规则
+    /**
+     *
+     * 认证规则
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
             auth.userDetailsService(customUserService());
@@ -42,17 +45,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
 
-
-        // 定制请求的授权规则
+        /**
+         *
+         * 定制请求的授权规则
+         *
+         */
         http.authorizeRequests().antMatchers("/").permitAll()
             .antMatchers("/user/**").hasRole("root")
             .antMatchers("/management/**").hasRole("root")
             .antMatchers("/questionnaire/**").permitAll()
             .and().rememberMe().key(KEY).tokenValiditySeconds(1209600);
-            // 记住两周
 
         http.csrf().disable();
-        // 开启自动配置的登录功能
         http.formLogin().failureForwardUrl("/login?error").failureUrl("/login?error");
         http.logout().permitAll();
     }
