@@ -10,10 +10,11 @@
             background-color: #cde0e5;
             text-align:center;
         }
-        u{
-            font-size:20px;
+        a{
+            text-decoration:none;
+            color: black;
         }
-        #questionnaires_box{
+        #Questionnaires_box{
             text-align:center;
             margin: 0 auto;
             width : 75%;
@@ -29,20 +30,20 @@
     <title>后台管理</title>
 </head>
 <body>
+    <h1 class="text-center">后台管理系统</h1>
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <div id="questionnaires_box">
+                <div id="Questionnaires_box">
                     <div style="height: 14px;"></div>
-                    <div id="option_box" style="height:45px;">
+                    <div style="height:45px;">
                         <input id="add_button" type="button" value="添加问卷" class="btn btn-default" onclick="Add()">
-    <!--                    <input id="del_button" type="button" value="删除问卷" class="btn btn-default">-->
                     </div>
                     <div id="content">
                         <table id="questionnaires_table" class="table table-striped">
                             <tr th:id="questionnaire + (${ques.id})" th:each="ques : ${allquestionnaire}">
                                 <td>
-                                    <a href="#"><u th:text="${ques.getName()}"></u></a>
+                                    <a href="#"><h4 th:text="${ques.getName()}"></h4></a>
                                 </td>
                             </tr>
 
