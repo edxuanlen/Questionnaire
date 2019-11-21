@@ -10,5 +10,3 @@ spring:
     cache: false
     encoding: UTF-8
     suffix: .html
-
-

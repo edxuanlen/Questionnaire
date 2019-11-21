@@ -9,6 +9,8 @@
         <setting name="lazyLoadingEnabled" value="true" />
         <setting name="multipleResultSetsEnabled" value="true" />
 
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+
         <setting name="useColumnLabel" value="true" />
         <setting name="useGeneratedKeys" value="false" />
         <setting name="autoMappingBehavior" value="PARTIAL" />

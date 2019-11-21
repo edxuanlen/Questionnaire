@@ -14,15 +14,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserDetailsService {
 
-
-    private UserMapper userMapper;
+    @Autowired
+    UserMapper userMapper;
 
     /**
     * 重写 loadUserByUsername 方法获得 user details 类型用户
     */
     @Override
     public UserDetails loadUserByUsername(String username) {
+        System.out.println(username);
         User user = userMapper.getUserByUsername(username);
+        System.out.println(user);
         if ( user != null ) {
             return user;
         } else {

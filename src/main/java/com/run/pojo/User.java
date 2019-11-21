@@ -43,28 +43,5 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() { return true; }
 
-//    @Override
-//    public String toString() {
-//        return "User{" +
-//                "id='" + id + '\'' +
-//                ", password='" + password + '\'' +
-//                '}';
-//    }
-//
-//    public String getid() {
-//        return id;
-//    }
-//
-//    public String getpassword() {
-//        return password;
-//    }
-//
-//    public void setid(String id) {
-//        this.id = id;
-//    }
-//
-//    public void setpassword(String password) {
-//        this.password = password;
-//    }
 
 }
