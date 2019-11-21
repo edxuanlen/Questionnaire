@@ -14,10 +14,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @MapperScan(value = "com.run.mapper")
 @SpringBootApplication
-public class QuestionaireApplication {
+public class QuestionnaireApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(QuestionaireApplication.class, args);
+        SpringApplication.run(QuestionnaireApplication.class, args);
     }
 
 }
