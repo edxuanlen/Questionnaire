@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <style>
+        body{
+            background-color: #cde0e5;
+            text-align:center;
+        }
+        #addquestionnaire_box{
+            text-align:center;
+            margin: 0 auto;
+            width : 75%;
+            background-color: white;
+            opacity: 0.8;
+            border-radius:10px;
+            box-shadow: 5px 5px 5px 5px #969899;
+        }
+    </style>
+    <title>后台管理</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col" style="height:100px;"></div>
+        <div class="col">
+            <div id="addquestionnaire_box">
+                <div style="height:1px;"></div>
+                    <h1 class="text-center" th:text="${questionnaire_name}"></h1>
+                <div style="height:20px;"></div>
+                <form id="questions_form" class="form-horizontal">
+                    <div th:id="question_ + (${questions.getQId()}) + _box" class="form-group" th:each="questions:${allquestions}">
+                        <div class="form-group">
+<!--                            <label th:for="question_ + (${questions.getQId()})" class="col-sm-3 control-label" th:text="${questions.getQId()}"></label>-->
+                                <div class="col-sm-12">
+                                    <h3 th:id="question_ + (${questions.getQId()})" th:text="(${questions.getQId()}) + '.' + (${questions.getQDescribe()})"></h3>
+                                </div>
+                        </div>
+                    </div>
+                </form>
+                <!--&lt;!&ndash;                为表单添加问题&ndash;&gt;-->
+<!--                                <form id="questions_form" class="form-horizontal">-->
+<!--                &lt;!&ndash;                    问题1&ndash;&gt;-->
+<!--                                    <div id="question_1" class="form-group">-->
+<!--                &lt;!&ndash;                        问题描述&ndash;&gt;-->
+<!--                                        <div class="form-group">-->
+<!--                                            <label for="question_1_describe" class="col-sm-3 control-label">1</label>-->
+<!--                                            <div class="col-sm-7">-->
+<!--                                                <input type="text" class="form-control" id="question_1_describe" placeholder="请输入问题描述">-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                &lt;!&ndash;                        问题类型&ndash;&gt;-->
+<!--                                        <div class="form-group">-->
+<!--                                            <label class="radio-inline">-->
+<!--                                                <input type="radio" name="question_type" id="question_1_type_radio1" value="option1" checked> 单选-->
+<!--                                            </label>-->
+<!--                                            <label class="radio-inline">-->
+<!--                                                <input type="radio" name="question_type" id="question_1_type_radio2" value="option2"> 多选-->
+<!--                                            </label>-->
+<!--                                            <label class="radio-inline">-->
+<!--                                                <input type="radio" name="question_type" id="question_1_type_radio3" value="option3"> 填空-->
+<!--                                            </label>-->
+<!--                                        </div>-->
+<!--                &lt;!&ndash;                        单选类型问题的容器&ndash;&gt;-->
+<!--                                        <div id="question_1_radiobox" class="form-group">-->
+<!--                                            <div class="row" style="padding-bottom:15px;">-->
+<!--                                                <div class="col-sm-3"></div>-->
+<!--                                                <div class="checkbox col-sm-1">-->
+<!--                                                    <input type="radio" name="question_1_answer_radio" id="question_1_answer_radio1" value="option1">-->
+<!--                                                </div>-->
+<!--                                                <div class="col-sm-5">-->
+<!--                                                    <input type="text" class="form-control" id="question_1_answer_input1">-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="row" style="padding-bottom:15px;">-->
+<!--                                                <div class="col-sm-3"></div>-->
+<!--                                                <div class="checkbox col-sm-1">-->
+<!--                                                    <input type="radio" name="question_1_answer_radio" id="question_1_answer_radio2" value="option1">-->
+<!--                                                </div>-->
+<!--                                                <div class="col-sm-5">-->
+<!--                                                    <input type="text" class="form-control" id="question_1_answer_input2">-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                &lt;!&ndash;                        多选类型问题的容器&ndash;&gt;-->
+<!--                                        <div id="question_1_checkbox" class="form-group">-->
+
+<!--                                        </div>-->
+<!--                &lt;!&ndash;                        填空类型问题的容器&ndash;&gt;-->
+<!--                                        <div id="question_1_inputbox" class="form-group">-->
+
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </form>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

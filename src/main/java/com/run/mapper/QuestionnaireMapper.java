@@ -1,5 +1,7 @@
 package com.run.mapper;
 
+import com.run.pojo.Question;
+import com.run.pojo.QuestionOption;
 import com.run.pojo.Questionnaire;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -40,11 +42,24 @@ public interface QuestionnaireMapper {
     List<Questionnaire> getQuestionnaireAll() throws Exception;
     /**
      * 插入新的问卷
-     * @param name
+     * @param questionnaire
      * @return Integer
      * @throws Exception
      */
-    Questionnaire insertQuestionnaire (String name) throws Exception;
+    void insertQuestionnaire (Questionnaire questionnaire) throws Exception;
+    /**
+     * 插入新的问卷
+     * @return List
+     * @throws Exception
+     * @param id
+     */
+    List<Question> getAllQuestions(BigInteger id) throws Exception;
 
-
+    /**
+     * 根据问题id获取问题选项
+     * @param qId
+     * @return List<QuestionOption>
+     * @throws Exception
+     */
+    List<QuestionOption> getQuestionOptionById(BigInteger qId) throws Exception;
 }
