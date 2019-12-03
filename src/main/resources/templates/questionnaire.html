@@ -36,9 +36,19 @@
                     <div th:id="question_ + (${questions.getQId()}) + _box" class="form-group" th:each="questions:${allquestions}">
                         <div class="form-group">
 <!--                            <label th:for="question_ + (${questions.getQId()})" class="col-sm-3 control-label" th:text="${questions.getQId()}"></label>-->
-                                <div class="col-sm-12">
-                                    <h3 th:id="question_ + (${questions.getQId()})" th:text="(${questions.getQId()}) + '.' + (${questions.getQDescribe()})"></h3>
-                                </div>
+                            <div class="col-sm-12">
+                                <h3  th:id="question_ + (${questions.getQId()})" th:text="(${questions.getQDescribe()})"></h3>
+                            </div>
+<!--                                <div th:each="options:${'option' + questions.getQId()}">-->
+<!--                                    <h4 th:text="(${options.getOpDescribe()})"></h4>-->
+<!--                                </div>-->
+                            
+                            <div th:with="qid=${questions.getQId()}" th:each="option:${options[qid]}">
+                                <!--/*@thymesVar id="options" type="com.run.pojo.QuestionOption"*/-->
+                                <h4 th:text="(${option.getOpDescribe()})"></h4>
+                            </div>
+
+
                         </div>
                     </div>
                 </form>
