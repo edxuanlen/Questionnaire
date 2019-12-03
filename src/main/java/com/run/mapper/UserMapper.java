@@ -15,11 +15,12 @@ public interface UserMapper {
 
     /**
      * 通过用户名获取User
-     * @param username
+     * @param username 用户名
      * @return User
      * return user
      */
     User getUserByUsername(String username);
+
 
 //    public User insertUser(User user);
 }

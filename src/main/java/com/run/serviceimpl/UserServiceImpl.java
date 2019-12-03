@@ -22,9 +22,7 @@ public class UserServiceImpl implements UserDetailsService {
     */
     @Override
     public UserDetails loadUserByUsername(String username) {
-        System.out.println(username);
         User user = userMapper.getUserByUsername(username);
-        System.out.println(user);
         if ( user != null ) {
             return user;
         } else {

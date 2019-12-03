@@ -21,10 +21,12 @@ public class ErrorController {
     /**
      * 404页面
      */
-    @GetMapping(value = "/404")
-    public String error404() {
-        return "/error/404";
-    }
+//    @GetMapping(value = "/404")
+//    public String error404() {
+//        return "/error/404";
+//    }
+
+
 
 }
 

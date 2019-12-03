@@ -1,5 +1,8 @@
 package com.run.pojo;
 
+import com.run.annotation.Column;
+import com.run.annotation.Id;
+import com.run.annotation.Table;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,6 +19,7 @@ import java.util.List;
  * @Version 1.0
  **/
 
+@Table(value = "User")
 @Data
 public class User implements UserDetails {
 //    @Setter @Getter
@@ -43,5 +47,22 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() { return true; }
 
+
+    @Id(value = "id")
+    public long getId() {
+        return id;
+    }
+
+    @Override
+    @Column(value = "username")
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    @Column(value = "password")
+    public String getPassword() {
+        return password;
+    }
 
 }

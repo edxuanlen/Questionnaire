@@ -51,9 +51,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
          *
          */
         http.authorizeRequests().antMatchers("/").permitAll()
-            .antMatchers("/user/**").hasRole("root")
-            .antMatchers("/management/**").hasRole("root")
-            .antMatchers("/questionnaire/**").permitAll()
+            .antMatchers("/user/root").hasAnyAuthority("root")
+//            .antMatchers("/management/**").hasRole("root")
+//            .antMatchers("/questionnaire/**").permitAll()
             .and().rememberMe().key(KEY).tokenValiditySeconds(1209600);
 
         http.csrf().disable();
