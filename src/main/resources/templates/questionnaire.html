@@ -42,6 +42,8 @@
 <!--                                <div th:each="options:${'option' + questions.getQId()}">-->
 <!--                                    <h4 th:text="(${options.getOpDescribe()})"></h4>-->
 <!--                                </div>-->
+
+                            <h4> th:text = "(${questions.getQId()})"</h4>
                             
                             <div th:with="qid=${questions.getQId()}" th:each="option:${options[qid]}">
                                 <!--/*@thymesVar id="options" type="com.run.pojo.QuestionOption"*/-->
