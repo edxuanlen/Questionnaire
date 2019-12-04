@@ -37,13 +37,15 @@
                 <div id="Questionnaires_box">
                     <div style="height: 14px;"></div>
                     <div style="height:45px;">
-                        <input id="add_button" type="button" value="添加问卷" class="btn btn-default" onclick="Add()">
+                        <a th:href="@{'/admin/add'}">
+                            <input id="add_button" type="button" value="添加问卷" class="btn btn-default">
+                        </a>
                     </div>
                     <div id="content">
                         <table id="questionnaires_table" class="table table-striped">
                             <tr th:id="questionnaire + (${ques.id})" th:each="ques : ${allquestionnaire}">
                                 <td>
-                                    <a href="#"><h4 th:text="${ques.getName()}"></h4></a>
+                                    <a th:href="@{'/questionnaire/' + ${ques.getId()}}"><h4 th:text="${ques.getName()}"></h4></a>
                                 </td>
                             </tr>
 
