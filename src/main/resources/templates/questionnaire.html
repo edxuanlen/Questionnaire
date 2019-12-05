@@ -44,13 +44,36 @@
 <!--                                </div>-->
                             <div th:with="qid=${questions.getQId()}">
 <!--                                <h4 th:text="(${qid})"></h4>-->
-                                <h4 th:each="option:${options.get(qid)}" th:text="(${option})"></h4>
-                            </div>
-<!--                            <div th:with="qid=${questions.getQId()}" th:each="option:${options.get">-->
-<!--                                &lt;!&ndash;/*@thymesVar id="options" type="com.run.pojo.QuestionOption"*/&ndash;&gt;-->
-<!--                                &lt;!&ndash;/*@thymesVar id="getOpDescribe" type=""*/&ndash;&gt;-->
-<!--                                <h4 th:text="(${option})"></h4>-->
-<!--                            </div>-->
+<!--                                <h4 th:each="option:${options.get(qid)}" th:text="(${option})"></h4>-->
+
+                                <!--/*@thymesVar id="options" type="java.util.HashMap"*/-->
+
+
+<!--                                单选题的容器-->
+                                <th:block th:if="${questions.getQuestionType()} == 'radio' " th:each="option:${options.get(qid)}" >
+                                    <div id="question_1_radiobox" class="form-group">
+                                        <div class="row" style="padding-bottom:15px;">
+                                            <div class="col-sm-3"></div>
+                                            <div class="checkbox col-sm-1">
+                                                <input type="radio" name="question_1_answer_radio" id="question_1_answer_radio1" value="option1">
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <!--/*@thymesVar id="option" type="com.run.pojo.QuestionOption"*/-->
+                                                <input type="text" class="form-control" id="question_1_answer_input1" disabled th:value="(${option.getOpDescribe()})" >
+                                            </div>
+                                        </div>
+<!--                                        <div class="row" style="padding-bottom:15px;">-->
+<!--                                            <div class="col-sm-3"></div>-->
+<!--                                            <div class="checkbox col-sm-1">-->
+<!--                                                <input type="radio" name="question_1_answer_radio" id="question_1_answer_radio2" value="option1">-->
+<!--                                            </div>-->
+<!--                                            <div class="col-sm-5">-->
+<!--                                                <input type="text" class="form-control" id="question_1_answer_input2">-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+                                    </div>
+                                </th:block>
+
 
 
                         </div>
@@ -79,6 +102,8 @@
 <!--                                                <input type="radio" name="question_type" id="question_1_type_radio3" value="option3"> 填空-->
 <!--                                            </label>-->
 <!--                                        </div>-->
+
+
 <!--                &lt;!&ndash;                        单选类型问题的容器&ndash;&gt;-->
 <!--                                        <div id="question_1_radiobox" class="form-group">-->
 <!--                                            <div class="row" style="padding-bottom:15px;">-->
