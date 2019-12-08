@@ -42,43 +42,79 @@
 <!--                                <div th:each="options:${'option' + questions.getQId()}">-->
 <!--                                    <h4 th:text="(${options.getOpDescribe()})"></h4>-->
 <!--                                </div>-->
+
+                            <!--/*@thymesVar id="option" type="com.run.pojo.QuestionOption"*/-->
+                            <!--/*@thymesVar id="options" type="java.util.HashMap"*/-->
                             <div th:with="qid=${questions.getQId()}">
 <!--                                <h4 th:text="(${qid})"></h4>-->
 <!--                                <h4 th:each="option:${options.get(qid)}" th:text="(${option})"></h4>-->
 
-                                <!--/*@thymesVar id="options" type="java.util.HashMap"*/-->
 
 
-<!--                                单选题的容器-->
+                                <!--                                单选题的容器-->
+
                                 <th:block th:if="${questions.getQuestionType()} == 'radio' " th:each="option:${options.get(qid)}" >
-                                    <div id="question_1_radiobox" class="form-group">
+                                    <div th:id="question_ + (${qid})" class="form-group">
+
                                         <div class="row" style="padding-bottom:15px;">
                                             <div class="col-sm-3"></div>
+
                                             <div class="checkbox col-sm-1">
-                                                <input type="radio" name="question_1_answer_radio" id="question_1_answer_radio1" value="option1">
-                                            </div>
-                                            <div class="col-sm-5">
                                                 <!--/*@thymesVar id="option" type="com.run.pojo.QuestionOption"*/-->
-                                                <input type="text" class="form-control" id="question_1_answer_input1" disabled th:value="(${option.getOpDescribe()})" >
+                                                <input type="radio" th:name="question_ + (${qid}) + _answer_radio"   th:id="question_ + (${qid}) + _answer_radio_ + (${option.getOpId()})" value="option1">
+                                                <label th:for="question_ + (${qid}) + _answer_radio_ + (${option.getOpId()})">
+<!--                                                    <input type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:value="(${option.getOpDescribe()})" > </input>-->
+                                                    <h4 type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:text="(${option.getOpDescribe()})" > </h4>
+                                                </label>
                                             </div>
-                                        </div>
-<!--                                        <div class="row" style="padding-bottom:15px;">-->
-<!--                                            <div class="col-sm-3"></div>-->
-<!--                                            <div class="checkbox col-sm-1">-->
-<!--                                                <input type="radio" name="question_1_answer_radio" id="question_1_answer_radio2" value="option1">-->
-<!--                                            </div>-->
 <!--                                            <div class="col-sm-5">-->
-<!--                                                <input type="text" class="form-control" id="question_1_answer_input2">-->
+<!--                                                &lt;!&ndash;/*@thymesVar id="option" type="com.run.pojo.QuestionOption"*/&ndash;&gt;-->
+<!--                                                <label th:for="question_ + (${qid}) + _answer_radio_ + (${option.getOpId()})" >-->
+<!--&lt;!&ndash;                                                    <input type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" disabled th:value="(${option.getOpDescribe()})" >&ndash;&gt;-->
+<!--                                                    <h4 type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:text="(${option.getOpDescribe()})" > </h4>-->
+<!--                                                </label>-->
 <!--                                            </div>-->
-<!--                                        </div>-->
+                                        </div>
                                     </div>
                                 </th:block>
 
 
+                                <th:block th:if="${questions.getQuestionType()} == 'checkbox' " th:each="option:${options.get(qid)}" >
+                                    <div th:id="question_ + (${qid})" class="form-group">
+                                        <div class="row" style="padding-bottom:15px;">
+                                            <div class="col-sm-3"></div>
+
+                                            <div class="radio col-sm-1">
+                                                <!--/*@thymesVar id="option" type="com.run.pojo.QuestionOption"*/-->
+                                                <input type="checkbox" th:name="question_ + (${qid}) + _answer_checkbox"   th:id="question_ + (${qid}) + _answer_radio_ + (${option.getOpId()}) " value="option1">
+                                                <label th:for="question_ + (${qid}) + _answer_radio_ + (${option.getOpId()})">
+<!--                                                    <input type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:value="(${option.getOpDescribe()})" > </input>-->
+                                                    <h4 type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:text="(${option.getOpDescribe()})" > </h4>
+                                                </label>
+                                            </div>
+<!--                                            <div class="col-sm-5">-->
+<!--                                                &lt;!&ndash;/*@thymesVar id="option" type="com.run.pojo.QuestionOption"*/&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <input type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" disabled th:value="(${option.getOpDescribe()})" >&ndash;&gt;-->
+<!--                                                <label th:for="question_ + (${qid}) + _answer_radio_ + (${option.getOpId()})" >-->
+<!--                                                    &lt;!&ndash;                                                    <input type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" disabled th:value="(${option.getOpDescribe()})" >&ndash;&gt;-->
+<!--                                                    <input type="text" class
+                                <div id="question_1_checkbox" class="form-group">
+
+                                </div>
+="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:value="(${option.getOpDescribe()})" > </input>-->
+<!--                                                </label>-->
+<!--                                            </div>-->
+                                        </div>
+                                    </div>
+                                </th:block>
+
+                            </div>
 
                         </div>
                     </div>
                 </form>
+
+
                 <!--&lt;!&ndash;                为表单添加问题&ndash;&gt;-->
 <!--                                <form id="questions_form" class="form-horizontal">-->
 <!--                &lt;!&ndash;                    问题1&ndash;&gt;-->

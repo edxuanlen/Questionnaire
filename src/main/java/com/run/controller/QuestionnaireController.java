@@ -49,13 +49,13 @@ public class QuestionnaireController {
         HashMap<BigInteger, List<QuestionOption>> M = new HashMap<>();
         for(int i = 0; i < total; i ++) {
             QId = list.get(i).getQId();
-            System.out.println("QID: " + QId);
+//            System.out.println("QID: " + QId);
             option_list = questionnaireMapper.getQuestionOptionById(QId);
-            System.out.println("option list " + option_list);
+//            System.out.println("option list " + option_list);
             M.put(QId, option_list);
         }
         model.addAttribute(s , M);
-        System.out.println(M);
+//        System.out.println(M);
         return "questionnaire";
     }
 }
