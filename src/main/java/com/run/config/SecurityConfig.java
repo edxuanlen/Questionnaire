@@ -52,6 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
          */
         http.authorizeRequests().antMatchers("/").permitAll()
             .antMatchers("/user/root").hasAnyAuthority("root")
+                .antMatchers("admin/**").hasAnyAuthority("root")
 //            .antMatchers("/management/**").hasRole("root")
 //            .antMatchers("/questionnaire/**").permitAll()
             .and().rememberMe().key(KEY).tokenValiditySeconds(1209600);

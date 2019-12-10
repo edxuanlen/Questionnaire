@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import javax.servlet.http.HttpServletRequest;
 import java.math.BigInteger;
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,31 +33,36 @@ import static org.eclipse.jdt.internal.compiler.codegen.ConstantPool.ValueOf;
 public class QuestionnaireController {
     @Autowired
     QuestionnaireMapper questionnaireMapper;
-    @RequestMapping("/{id}")
-    public String getAllQuestions(@PathVariable("id") BigInteger id, Model model) throws Exception {
+    @RequestMapping(value = {"/{id}/{type}"})
+    public String getAllQuestions(@PathVariable("id") BigInteger id, @PathVariable("type") String type, Model model, HttpServletRequest request) throws Exception {
         //获取所有问题信息
         List<Question> list = questionnaireMapper.getAllQuestions(id);
         //获取问卷名
         Questionnaire questionnaire = questionnaireMapper.getQuestionnaireById(id);
+        String username = request.getUserPrincipal().getName();
+
         //把问题信息放入Attribute
         model.addAttribute("questionnaire_name", questionnaire.getName());
         model.addAttribute("allquestions", list);
+        String compareType = "change";
+        type = type.toString();
+        if (type.equals(compareType)) {
+            model.addAttribute("username", username);
+        }
+
+
         //循环每一个问题获取每一个问题的选项
         int total = list.size();
         BigInteger QId;
         String s = "options";
         List<QuestionOption> option_list;
-//        Map<String, List<QuestionOption>> m = null;
         HashMap<BigInteger, List<QuestionOption>> M = new HashMap<>();
         for(int i = 0; i < total; i ++) {
             QId = list.get(i).getQId();
-//            System.out.println("QID: " + QId);
             option_list = questionnaireMapper.getQuestionOptionById(QId);
-//            System.out.println("option list " + option_list);
             M.put(QId, option_list);
         }
         model.addAttribute(s , M);
-//        System.out.println(M);
         return "questionnaire";
     }
 }
