@@ -39,7 +39,14 @@ public class QuestionnaireController {
         List<Question> list = questionnaireMapper.getAllQuestions(id);
         //获取问卷名
         Questionnaire questionnaire = questionnaireMapper.getQuestionnaireById(id);
-        String username = request.getUserPrincipal().getName();
+
+
+        String username = null;
+        try{
+            username = request.getUserPrincipal().getName();
+        } catch (Exception e){
+            System.out.println(e);
+        }
 
         //把问题信息放入Attribute
         model.addAttribute("questionnaire_name", questionnaire.getName());
@@ -47,7 +54,11 @@ public class QuestionnaireController {
         String compareType = "change";
         type = type.toString();
         if (type.equals(compareType)) {
-            model.addAttribute("username", username);
+            if ( username != null && username.equals(username)){
+                model.addAttribute("username", username);
+            } else {
+                return "/error/404";
+            }
         }
 
 
