@@ -19,47 +19,43 @@ import java.util.List;
 public interface QuestionnaireMapper {
 
     /**
-     * 通过问卷名称获取问卷实体
-     * @param name
-     * @return Questionnaire entity
-     * @throws Exception
-     */
-    Questionnaire getQuestionnaireByName(String name) throws Exception;
-
-
-    /**
      * 通过问卷编号获取问卷实体
-     * @param id
+     * @param id questionnaire id
      * @return Questionnaire entity
-     * @throws Exception
+     * @throws Exception error
      */
     Questionnaire getQuestionnaireById(BigInteger id) throws Exception;
     /**
      * 获取全部问卷信息
      * @return Questionnaire entity
-     * @throws Exception
+     * @throws Exception error
      */
     List<Questionnaire> getQuestionnaireAll() throws Exception;
     /**
      * 插入新的问卷
-     * @param questionnaire
-     * @return Integer
-     * @throws Exception
+     * @param questionnaire questionnaire
+     * @return Integer questionnaire insert id
+     * @throws Exception error
      */
-    void insertQuestionnaire (Questionnaire questionnaire) throws Exception;
+    Integer insertQuestionnaire (Questionnaire questionnaire) throws Exception;
     /**
      * 插入新的问卷
      * @return List
-     * @throws Exception
-     * @param id
+     * @param id questionnaire id
+     * @throws Exception error
      */
     List<Question> getAllQuestions(BigInteger id) throws Exception;
 
     /**
      * 根据问题id获取问题选项
-     * @param qId
-     * @return List<QuestionOption>
-     * @throws Exception
+     * @param qId question id
+     * @return List<QuestionOption>:
+     * @throws Exception error
      */
     List<QuestionOption> getQuestionOptionById(BigInteger qId) throws Exception;
+
+
+
+
+
 }

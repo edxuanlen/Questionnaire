@@ -16,9 +16,7 @@
     </select>    <!--    <insert id="insertUser">-->
     <!--        insert into user values (id = #{id}, password = #{passWord})-->
     <!--    </insert>-->
-    <insert id="insertQuestionnaire" parameterType="string">
-        INSERT INTO questionnaire (`name`,`qn_describe`,`status`) VALUES (#{name}, #{qnDescribe},#{status})
-    </insert>
+
 
     <select id="getAllQuestions" parameterType="BigInteger" resultType="com.run.pojo.Question">
         select * from question where id = #{id}
@@ -27,4 +25,10 @@
     <select id="getQuestionOptionById" resultType="com.run.pojo.QuestionOption">
         select * from question_option where q_id = #{qId}
     </select>
+
+
+    <insert id="insertQuestionnaire" parameterType="string" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO questionnaire (`name`,`qn_describe`,`status`) VALUES (#{name}, #{qnDescribe},#{status})
+    </insert>
+
 </mapper>

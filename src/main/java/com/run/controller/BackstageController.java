@@ -44,12 +44,12 @@ public class BackstageController {
     @RequestMapping("/insert")
     public String save(@Valid Questionnaire questionnaire, BindingResult bindingResult) throws Exception{
         if(bindingResult.hasErrors()){
-//            return bindingResult.getFieldError().getDefaultMessage();
+            // TODO 返回页面不应该是一个字串
             return "问卷名称或问卷描述为空！";
         }else{
             System.out.println(questionnaire.getName());
             System.out.println(questionnaire.getQnDescribe());
-            questionnaireMapper.insertQuestionnaire(questionnaire);
+            Integer questionnaireId = questionnaireMapper.insertQuestionnaire(questionnaire);
             return "redirect:/admin/";
         }
     }
