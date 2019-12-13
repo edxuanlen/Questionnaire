@@ -10,9 +10,7 @@ import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +31,17 @@ import static org.eclipse.jdt.internal.compiler.codegen.ConstantPool.ValueOf;
 public class QuestionnaireController {
     @Autowired
     QuestionnaireMapper questionnaireMapper;
+
+
+
+    @RequestMapping(value = {"/update"}, method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, String[]> updateForQuestionnaire(Model model, HttpServletRequest request) throws Exception{
+        Map<String, String[]> m = request.getParameterMap();
+        System.out.println(m);
+        return m;
+    }
+
     @RequestMapping(value = {"/{id}/{type}"})
     public String getAllQuestions(@PathVariable("id") BigInteger id, @PathVariable("type") String type, Model model, HttpServletRequest request) throws Exception {
         //获取所有问题信息
@@ -76,4 +85,6 @@ public class QuestionnaireController {
         model.addAttribute(s , M);
         return "questionnaire";
     }
+
+
 }
