@@ -47,7 +47,7 @@
                             <th:block th:if = "(${username}) == 'root'" >
                                 <div class="col-sm-8">
                                     <h3>
-                                        <input th:name="question + (${qid})" th:type="text" th:id="question_ + (${questions.getQId()})" th:value="(${index.count}) + '. ' +(${questions.getQDescribe()})">
+                                        <input th:name="question_ + (${qid})" th:type="text" th:id="question_ + (${questions.getQId()})" th:value="(${index.count}) + '. ' +(${questions.getQDescribe()})">
                                     </h3>
                                 </div>
                             </th:block>
@@ -85,7 +85,7 @@
 
                                                     <th:block th:if = "(${username}) == 'root'" >
                                                         <div class="row col-sm-8">
-                                                            <input th:name="option + (${option.getOpId()})" type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:value="(${option.getOpDescribe()})" >
+                                                            <input th:name="option_ + (${option.getOpId()})" type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:value="(${option.getOpDescribe()})" >
                                                         </div>
                                                     </th:block>
 
@@ -126,7 +126,7 @@
 
                                                 <label th:for="question_ + (${qid}) + _answer_radio_ + (${option.getOpId()})">
                                                     <th:block th:if = "(${username}) == 'root'" >
-                                                        <input th:name="option + (${option.getOpId()})" type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:value="(${option.getOpDescribe()})" > </input>
+                                                        <input th:name="option_ + (${option.getOpId()})" type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:value="(${option.getOpDescribe()})" > </input>
                                                     </th:block>
                                                     <th:block th:unless="(${username}) == 'root'" >
                                                         <h4 type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:text="(${option.getOpDescribe()})" > </h4>

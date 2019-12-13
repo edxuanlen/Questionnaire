@@ -32,13 +32,32 @@ public class QuestionnaireController {
     @Autowired
     QuestionnaireMapper questionnaireMapper;
 
+    static final String QUESTION = "question";
+    static final String OPTION = "option";
 
 
     @RequestMapping(value = {"/update"}, method = RequestMethod.POST)
     @ResponseBody
     public Map<String, String[]> updateForQuestionnaire(Model model, HttpServletRequest request) throws Exception{
         Map<String, String[]> m = request.getParameterMap();
-        System.out.println(m);
+
+        for (Map.Entry<String, String[]> entry: m.entrySet()){
+            String key = entry.getKey();
+            String[] postNameSplit = key.split("_");
+
+            if (postNameSplit[0].equals(QUESTION)){
+                String questionId = postNameSplit[1];
+                String questionDescribe = entry.getValue()[0].split(". ")[1];
+                System.out.println( "question" + questionId + ": " + questionDescribe);
+
+            } else {
+                String optionId = postNameSplit[1];
+                String optionDescribe = entry.getValue()[0];
+                System.out.println( "   option" + optionId + ": " + optionDescribe);
+            }
+
+        }
+
         return m;
     }
 
