@@ -41,7 +41,11 @@
                 <form id="questions_form" class="form-horizontal" th:action="@{/questionnaire/update}" method="post">
 
 
+                    <input th:type="text" th:name="type" th:value="(${type})" style="visibility:hidden">
+                    <input th:type="text" th:name="id" th:value="(${questionnaire_id})" style="visibility:hidden">
+
                     <div th:id="question_ + (${questions.getQId()}) + _box" class="form-group" th:each="questions,index:${allquestions}">
+
 
 
 

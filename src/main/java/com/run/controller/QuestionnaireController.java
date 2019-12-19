@@ -39,11 +39,15 @@ public class QuestionnaireController {
     @RequestMapping(value = {"/update"}, method = RequestMethod.POST)
     @ResponseBody
     public Map<String, String[]> updateForQuestionnaire(Model model, HttpServletRequest request) throws Exception{
-        Map<String, String[]> m = request.getParameterMap();
 
+
+        Map<String, String[]> m = request.getParameterMap();
 //        for (Map.Entry<String, String[]> entry: m.entrySet()){
 //            String key = entry.getKey();
+//
 //            String[] postNameSplit = key.split("_");
+//
+//            System.out.println(postNameSplit[0]);
 //
 //            if (postNameSplit[0].equals(QUESTION)){
 //                String questionId = postNameSplit[1];
@@ -77,6 +81,7 @@ public class QuestionnaireController {
         }
 
         //把问题信息放入Attribute
+        model.addAttribute("questionnaire_id", id);
         model.addAttribute("questionnaire_name", questionnaire.getName());
         model.addAttribute("allquestions", list);
         String compareType = "change";
