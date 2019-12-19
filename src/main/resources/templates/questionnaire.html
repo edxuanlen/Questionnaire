@@ -9,10 +9,10 @@
     <style>
         body{
             background-color: #cde0e5;
-            text-align:center;
+            /*text-align:center;*/
         }
         #addquestionnaire_box{
-            text-align:center;
+            /*text-align:center;*/
             margin: 0 auto;
             width : 75%;
             background-color: white;
@@ -20,6 +20,10 @@
             border-radius:10px;
             box-shadow: 5px 5px 5px 5px #969899;
         }
+        /*h3{*/
+        /*    margin-left: 30%;*/
+        /*}*/
+
     </style>
     <title>后台管理</title>
 </head>
@@ -29,21 +33,24 @@
         <div class="col" style="height:100px;"></div>
         <div class="col">
             <div id="addquestionnaire_box">
+
                 <div style="height:1px;"></div>
-                    <h1 class="text-center" th:text="${questionnaire_name}"></h1>
-                <div style="height:20px;"></div>
+                <h1 class="text-center" th:text="${questionnaire_name}"></h1>
+                <div style="height:60px;"></div>
 
                 <form id="questions_form" class="form-horizontal" th:action="@{/questionnaire/update}" method="post">
 
 
+                    <div th:id="question_ + (${questions.getQId()}) + _box" class="form-group" th:each="questions,index:${allquestions}">
 
 
-                    <div th:with="i=1" th:id="question_ + (${questions.getQId()}) + _box" class="form-group" th:each="questions,index:${allquestions}">
+
                         <div class="form-group">
 <!--                            <input name=“booktypeno1” type="text" value="value" readonly="readonly">-->
 
+                            <div class="col-sm-2"></div>
                             <div th:with="qid=${questions.getQId()}">
-
+<!--                                <th:block th:if="(${index.count}) == 1" > <h5>hello</h5></th:block>-->
                             <th:block th:if = "(${username}) == 'root'" >
                                 <div class="col-sm-8">
                                     <h3>
@@ -57,8 +64,6 @@
                                 </div>
                             </th:block>
 
-                            <div class="col-sm-4">
-                            </div>
 
                             <!--/*@thymesVar id="option" type="com.run.pojo.QuestionOption"*/-->
                             <!--/*@thymesVar id="options" type="java.util.HashMap"*/-->
@@ -74,14 +79,11 @@
 
                                         <div class="row" style="padding-bottom:15px;">
 <!--                                            <div class="col-sm-3"></div>-->
+                                            <div class="col-sm-3" ></div>
 
                                             <div class="checkbox col-sm-8">
                                                 <!--/*@thymesVar id="option" type="com.run.pojo.QuestionOption"*/-->
-                                                <div class="row col-sm-4">
-
-                                                </div>
-
-                                                <div class="row col-sm-8">
+<!--                                                <div class="row col-sm-8">-->
 
                                                     <th:block th:if = "(${username}) == 'root'" >
                                                         <div class="row col-sm-8">
@@ -98,10 +100,9 @@
                                                             <h4 type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:text="(${option.getOpDescribe()})" > </h4>
                                                         </th:block>
                                                     </label>
-                                                </div>
+<!--                                                </div>-->
 
                                             </div>
-                                            <div class="col-sm-4"> </div>
 <!--                                                &lt;!&ndash;/*@thymesVar id="option" type="com.run.pojo.QuestionOption"*/&ndash;&gt;-->
 <!--                                                <label th:for="question_ + (${qid}) + _answer_radio_ + (${option.getOpId()})" >-->
 <!--&lt;!&ndash;                                                    <input type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" disabled th:value="(${option.getOpDescribe()})" >&ndash;&gt;-->
@@ -118,7 +119,11 @@
                                         <div class="row" style="padding-bottom:15px;">
 <!--                                            <div class="col-sm-3"></div>-->
 
-                                            <div class="radio col-sm-8">
+                                            <div class="col-sm-3" ></div>
+
+                                            <div class="checkbox col-sm-8">
+
+
                                                 <!--/*@thymesVar id="option" type="com.run.pojo.QuestionOption"*/-->
                                                 <th:block th:unless = "(${username}) == 'root'" >
                                                     <input type="checkbox" th:name="(${qid})"   th:id="question_ + (${qid}) + _answer_radio_ + (${option.getOpId()}) " th:value="(${option.getOpDescribe()})">
@@ -135,7 +140,6 @@
 <!--                                                    <h4 type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:text="(${option.getOpDescribe()})" > </h4>-->
                                                 </label>
                                             </div>
-                                            <div class="col-sm-4"> </div>
 <!--                                                &lt;!&ndash;/*@thymesVar id="option" type="com.run.pojo.QuestionOption"*/&ndash;&gt;-->
 <!--&lt;!&ndash;                                                <input type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" disabled th:value="(${option.getOpDescribe()})" >&ndash;&gt;-->
 <!--                                                <label th:for="question_ + (${qid}) + _answer_radio_ + (${option.getOpId()})" >-->
@@ -156,9 +160,10 @@
 
                         </div>
                     </div>
-<!--                    button-->
+                    <!--                    button-->
                     <div class="row">
                         <div class="col-sm-12">
+                            <div class="col-sm-5" ></div>
                             <button type="submit" class="btn btn-default btn-lg">提交</button>
                         </div>
                     </div>
@@ -228,7 +233,8 @@
             <div style="height:60px;"></div>
 
         </div>
-        </div>
+<!--        </div>-->
     </div>
+</div>
 </body>
 </html>

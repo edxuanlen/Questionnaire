@@ -54,8 +54,22 @@ public interface QuestionnaireMapper {
      */
     List<QuestionOption> getQuestionOptionById(BigInteger qId) throws Exception;
 
+    // TODO 更新Option
+
+    /**
+     * @param opId option id
+     * @param opDescribe option describe
+     * @return update status
+     * @throws Exception update error
+     */
+    boolean updateOfQuestionOptionById (BigInteger opId, String opDescribe) throws Exception;
+
+    // TODO 更新Question Describe
+
+    boolean updateOfQuestionDescribeById(BigInteger qId, String qDescribe) throws Exception;
 
 
-
+    // TODO 有必要添加更改题目type
+    
 
 }
