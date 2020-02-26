@@ -15,6 +15,7 @@
             color: black;
         }
         #Questionnaires_box{
+
             text-align:center;
             margin: 0 auto;
             width : 75%;
@@ -45,7 +46,7 @@
                         <table id="questionnaires_table" class="table table-striped">
                             <tr th:id="questionnaire + (${ques.id})" th:each="ques : ${allquestionnaire}">
                                 <td>
-                                    <a th:href="@{'/questionnaire/' + ${ques.getId()}}"><h4 th:text="${ques.getName()}"></h4></a>
+                                    <a th:href="@{'/questionnaire/' + ${ques.getId()} + '/view'}"><h4 th:text="${ques.getName()}"></h4></a>
                                 </td>
                             </tr>
 
