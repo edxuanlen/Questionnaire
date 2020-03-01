@@ -2,17 +2,20 @@ package com.run.controller;
 
 import com.run.mapper.QuestionnaireMapper;
 import com.run.pojo.Questionnaire;
+import com.run.utils.Excel;
+import com.run.utils.UploadExcel;
+import com.run.utils.UploadFile;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.io.File;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -25,7 +28,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping(value = "/admin")
-public class BackstageController {
+public class BackstageController {  
     @Autowired
     QuestionnaireMapper questionnaireMapper;
     /**跳转后台管理页面并获取问卷信息*/
@@ -41,15 +44,32 @@ public class BackstageController {
         return "/admin/addQuestionnaire";
     }
     /**处理插入请求并重定向*/
-    @RequestMapping("/insert")
-    public String save(@Valid Questionnaire questionnaire, BindingResult bindingResult) throws Exception{
+//    @RequestMapping("/insert")
+    @PostMapping("/insert")
+    public String save(@Valid Questionnaire questionnaire, @RequestParam("UploadFile") MultipartFile file, BindingResult bindingResult) throws Exception{
         if(bindingResult.hasErrors()){
             // TODO 返回页面不应该是一个字串
             return "问卷名称或问卷描述为空！";
         }else{
+//            System.out.println(questionnaire);
+//            System.out.println(bindingResult);
+//            System.out.println(file);
+
+
             System.out.println(questionnaire.getName());
             System.out.println(questionnaire.getQnDescribe());
-            Integer questionnaireId = questionnaireMapper.insertQuestionnaire(questionnaire);
+            Excel excel = new Excel();
+            System.out.println(excel.upload(file));
+            excel.read();
+
+
+
+//            Integer questionnaireId = questionnaireMapper.insertQuestionnaire(questionnaire);
+
+
+
+
+
             return "redirect:/admin/";
         }
     }

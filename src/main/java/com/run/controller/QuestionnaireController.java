@@ -34,6 +34,7 @@ public class QuestionnaireController {
 
     static final String QUESTION = "question";
     static final String OPTION = "option";
+    static final String ROOT = "root";
 
 
     @RequestMapping(value = {"/update"}, method = RequestMethod.POST)
@@ -84,8 +85,16 @@ public class QuestionnaireController {
         model.addAttribute("questionnaire_id", id);
         model.addAttribute("questionnaire_name", questionnaire.getName());
         model.addAttribute("allquestions", list);
+
+        if ( username != null && username.equals("root") && type.equals("view")){
+            username = "viewer";
+            System.out.println(username);
+        }
+
+        model.addAttribute("username", username);
         String compareType = "change";
         type = type.toString();
+
         if (type.equals(compareType)) {
             if ( username != null && username.equals(username)){
                 model.addAttribute("username", username);
@@ -93,7 +102,6 @@ public class QuestionnaireController {
                 return "/error/404";
             }
         }
-
 
         //循环每一个问题获取每一个问题的选项
         int total = list.size();

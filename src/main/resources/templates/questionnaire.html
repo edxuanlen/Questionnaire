@@ -50,29 +50,29 @@
 
 
                         <div class="form-group">
-<!--                            <input name=“booktypeno1” type="text" value="value" readonly="readonly">-->
+                            <!--                            <input name=“booktypeno1” type="text" value="value" readonly="readonly">-->
 
                             <div class="col-sm-2"></div>
                             <div th:with="qid=${questions.getQId()}">
-<!--                                <th:block th:if="(${index.count}) == 1" > <h5>hello</h5></th:block>-->
-                            <th:block th:if = "(${username}) == 'root'" >
-                                <div class="col-sm-8">
-                                    <h3>
-                                        <input th:name="question_ + (${qid})" th:type="text" th:id="question_ + (${questions.getQId()})" th:value="(${index.count}) + '. ' +(${questions.getQDescribe()})">
-                                    </h3>
-                                </div>
-                            </th:block>
-                            <th:block th:unless = "(${username}) == 'root'" >
-                                <div class="col-sm-8">
-                                    <h3  th:id="question_ + (${questions.getQId()})" th:text="(${index.count}) + '. ' +(${questions.getQDescribe()})"></h3>
-                                </div>
-                            </th:block>
+                                <!--                                <th:block th:if="(${index.count}) == 1" > <h5>hello</h5></th:block>-->
+                                <th:block th:if = "(${username}) == 'root'" >
+                                    <div class="col-sm-8">
+                                        <h3>
+                                            <input th:name="question_ + (${qid})" th:type="text" th:id="question_ + (${questions.getQId()})" th:value="(${index.count}) + '. ' +(${questions.getQDescribe()})">
+                                        </h3>
+                                    </div>
+                                </th:block>
+                                <th:block th:unless = "(${username}) == 'root'" >
+                                    <div class="col-sm-8">
+                                        <h3  th:id="question_ + (${questions.getQId()})" th:text="(${index.count}) + '. ' +(${questions.getQDescribe()})"></h3>
+                                    </div>
+                                </th:block>
 
 
-                            <!--/*@thymesVar id="option" type="com.run.pojo.QuestionOption"*/-->
-                            <!--/*@thymesVar id="options" type="java.util.HashMap"*/-->
-<!--                                <h4 th:text="(${qid})"></h4>-->
-<!--                                <h4 th:each="option:${options.get(qid)}" th:text="(${option})"></h4>-->
+                                <!--/*@thymesVar id="option" type="com.run.pojo.QuestionOption"*/-->
+                                <!--/*@thymesVar id="options" type="java.util.HashMap"*/-->
+                                <!--                                <h4 th:text="(${qid})"></h4>-->
+                                <!--                                <h4 th:each="option:${options.get(qid)}" th:text="(${option})"></h4>-->
 
 
                                 <!--                                单选题的容器-->
@@ -82,43 +82,43 @@
                                     <div th:id="question_ + (${qid})" class="form-group">
 
                                         <div class="row" style="padding-bottom:15px;">
-<!--                                            <div class="col-sm-3"></div>-->
+                                            <!--                                            <div class="col-sm-3"></div>-->
                                             <div class="col-sm-3" ></div>
 
                                             <div class="radio col-sm-8">
                                                 <!--/*@thymesVar id="option" type="com.run.pojo.QuestionOption"*/-->
-<!--                                                <div class="row col-sm-8">-->
+                                                <!--                                                <div class="row col-sm-8">-->
 
-                                                    <th:block th:if = "(${username}) == 'root'" >
-                                                        <div class="row col-sm-8">
-                                                            <input th:name="option_ + (${option.getOpId()})" type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:value="(${option.getOpDescribe()})" >
+                                                <th:block th:if = "(${username}) == 'root'" >
+                                                    <div class="row col-sm-8">
+                                                        <input th:name="option_ + (${option.getOpId()})" type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:value="(${option.getOpDescribe()})" >
 
-                                                        </div>
+                                                    </div>
+                                                </th:block>
+
+
+                                                <th:block th:unless = "(${username}) == 'root'" >
+                                                    <input type="radio" th:name="(${qid})"   th:id="question_ + (${qid}) + _answer_radio_ + (${option.getOpId()})" th:value="(${option.getOpDescribe()})">
+
+                                                </th:block>
+                                                <label th:for="question_ + (${qid}) + _answer_radio_ + (${option.getOpId()})">
+                                                    <th:block th:unless="(${username}) == 'root'" >
+                                                        <h4 type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:text="(${option.getOpDescribe()})" > </h4>
+
                                                     </th:block>
-
-
-                                                    <th:block th:unless = "(${username}) == 'root'" >
-                                                        <input type="radio" th:name="(${qid})"   th:id="question_ + (${qid}) + _answer_radio_ + (${option.getOpId()})" th:value="(${option.getOpDescribe()})">
-
-                                                    </th:block>
-                                                    <label th:for="question_ + (${qid}) + _answer_radio_ + (${option.getOpId()})">
-                                                        <th:block th:unless="(${username}) == 'root'" >
-                                                            <h4 type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:text="(${option.getOpDescribe()})" > </h4>
-
-                                                        </th:block>
-                                                    </label>
-                                                    <th:block th:if = "(${username}) == 'root'" >
-                                                        <div th:text="(${option.getSelectedNum()}) + 人选择此项"></div>
-                                                    </th:block>
-<!--                                                </div>-->
+                                                </label>
+                                                <th:block th:if = "(${username}) == 'viewer'  or (${username}) == 'root'" >
+                                                    <div th:text="(${option.getSelectedNum()}) + 人选择此项"></div>
+                                                </th:block>
+                                                <!--                                                </div>-->
 
                                             </div>
-<!--                                                &lt;!&ndash;/*@thymesVar id="option" type="com.run.pojo.QuestionOption"*/&ndash;&gt;-->
-<!--                                                <label th:for="question_ + (${qid}) + _answer_radio_ + (${option.getOpId()})" >-->
-<!--&lt;!&ndash;                                                    <input type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" disabled th:value="(${option.getOpDescribe()})" >&ndash;&gt;-->
-<!--                                                    <h4 type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:text="(${option.getOpDescribe()})" > </h4>-->
-<!--                                                </label>-->
-<!--                                            </div>-->
+                                            <!--                                                &lt;!&ndash;/*@thymesVar id="option" type="com.run.pojo.QuestionOption"*/&ndash;&gt;-->
+                                            <!--                                                <label th:for="question_ + (${qid}) + _answer_radio_ + (${option.getOpId()})" >-->
+                                            <!--&lt;!&ndash;                                                    <input type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" disabled th:value="(${option.getOpDescribe()})" >&ndash;&gt;-->
+                                            <!--                                                    <h4 type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:text="(${option.getOpDescribe()})" > </h4>-->
+                                            <!--                                                </label>-->
+                                            <!--                                            </div>-->
                                         </div>
                                     </div>
                                 </th:block>
@@ -127,7 +127,7 @@
                                 <th:block th:if="${questions.getQuestionType()} == 'checkbox' " th:each="option:${options.get(qid)}" >
                                     <div th:id="question_ + (${qid})" class="form-group">
                                         <div class="row" style="padding-bottom:15px;">
-<!--                                            <div class="col-sm-3"></div>-->
+                                            <!--                                            <div class="col-sm-3"></div>-->
 
                                             <div class="col-sm-3" ></div>
 
@@ -146,24 +146,24 @@
                                                     <th:block th:unless="(${username}) == 'root'" >
                                                         <h4 type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:text="(${option.getOpDescribe()})" > </h4>
                                                     </th:block>
-<!--                                                    <input type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:value="(${option.getOpDescribe()})" > </input>-->
-<!--                                                    <h4 type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:text="(${option.getOpDescribe()})" > </h4>-->
+                                                    <!--                                                    <input type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:value="(${option.getOpDescribe()})" > </input>-->
+                                                    <!--                                                    <h4 type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:text="(${option.getOpDescribe()})" > </h4>-->
                                                 </label>
-                                                <th:block th:if = "(${username}) == 'root'" >
+                                                <th:block th:if = "(${username}) == 'viewer' or (${username}) == 'root'" >
                                                     <div float="right" th:text="(${option.getSelectedNum()}) + 人选择此项"></div>
                                                 </th:block>
                                             </div>
-<!--                                                &lt;!&ndash;/*@thymesVar id="option" type="com.run.pojo.QuestionOption"*/&ndash;&gt;-->
-<!--&lt;!&ndash;                                                <input type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" disabled th:value="(${option.getOpDescribe()})" >&ndash;&gt;-->
-<!--                                                <label th:for="question_ + (${qid}) + _answer_radio_ + (${option.getOpId()})" >-->
-<!--                                                    &lt;!&ndash;                                                    <input type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" disabled th:value="(${option.getOpDescribe()})" >&ndash;&gt;-->
-<!--                                                    <input type="text" class
-                                <div id="question_1_checkbox" class="form-group">
+                                            <!--                                                &lt;!&ndash;/*@thymesVar id="option" type="com.run.pojo.QuestionOption"*/&ndash;&gt;-->
+                                            <!--&lt;!&ndash;                                                <input type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" disabled th:value="(${option.getOpDescribe()})" >&ndash;&gt;-->
+                                            <!--                                                <label th:for="question_ + (${qid}) + _answer_radio_ + (${option.getOpId()})" >-->
+                                            <!--                                                    &lt;!&ndash;                                                    <input type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" disabled th:value="(${option.getOpDescribe()})" >&ndash;&gt;-->
+                                            <!--                                                    <input type="text" class
+                                                                            <div id="question_1_checkbox" class="form-group">
 
-                                </div>
-="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:value="(${option.getOpDescribe()})" > </input>-->
-<!--                                                </label>-->
-<!--                                            </div>-->
+                                                                            </div>
+                                            ="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:value="(${option.getOpDescribe()})" > </input>-->
+                                            <!--                                                </label>-->
+                                            <!--                                            </div>-->
                                         </div>
                                     </div>
 
@@ -187,66 +187,66 @@
 
 
                 <!--&lt;!&ndash;                为表单添加问题&ndash;&gt;-->
-<!--                                <form id="questions_form" class="form-horizontal">-->
-<!--                &lt;!&ndash;                    问题1&ndash;&gt;-->
-<!--                                    <div id="question_1" class="form-group">-->
-<!--                &lt;!&ndash;                        问题描述&ndash;&gt;-->
-<!--                                        <div class="form-group">-->
-<!--                                            <label for="question_1_describe" class="col-sm-3 control-label">1</label>-->
-<!--                                            <div class="col-sm-7">-->
-<!--                                                <input type="text" class="form-control" id="question_1_describe" placeholder="请输入问题描述">-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                &lt;!&ndash;                        问题类型&ndash;&gt;-->
-<!--                                        <div class="form-group">-->
-<!--                                            <label class="radio-inline">-->
-<!--                                                <input type="radio" name="question_type" id="question_1_type_radio1" value="option1" checked> 单选-->
-<!--                                            </label>-->
-<!--                                            <label class="radio-inline">-->
-<!--                                                <input type="radio" name="question_type" id="question_1_type_radio2" value="option2"> 多选-->
-<!--                                            </label>-->
-<!--                                            <label class="radio-inline">-->
-<!--                                                <input type="radio" name="question_type" id="question_1_type_radio3" value="option3"> 填空-->
-<!--                                            </label>-->
-<!--                                        </div>-->
+                <!--                                <form id="questions_form" class="form-horizontal">-->
+                <!--                &lt;!&ndash;                    问题1&ndash;&gt;-->
+                <!--                                    <div id="question_1" class="form-group">-->
+                <!--                &lt;!&ndash;                        问题描述&ndash;&gt;-->
+                <!--                                        <div class="form-group">-->
+                <!--                                            <label for="question_1_describe" class="col-sm-3 control-label">1</label>-->
+                <!--                                            <div class="col-sm-7">-->
+                <!--                                                <input type="text" class="form-control" id="question_1_describe" placeholder="请输入问题描述">-->
+                <!--                                            </div>-->
+                <!--                                        </div>-->
+                <!--                &lt;!&ndash;                        问题类型&ndash;&gt;-->
+                <!--                                        <div class="form-group">-->
+                <!--                                            <label class="radio-inline">-->
+                <!--                                                <input type="radio" name="question_type" id="question_1_type_radio1" value="option1" checked> 单选-->
+                <!--                                            </label>-->
+                <!--                                            <label class="radio-inline">-->
+                <!--                                                <input type="radio" name="question_type" id="question_1_type_radio2" value="option2"> 多选-->
+                <!--                                            </label>-->
+                <!--                                            <label class="radio-inline">-->
+                <!--                                                <input type="radio" name="question_type" id="question_1_type_radio3" value="option3"> 填空-->
+                <!--                                            </label>-->
+                <!--                                        </div>-->
 
 
-<!--                &lt;!&ndash;                        单选类型问题的容器&ndash;&gt;-->
-<!--                                        <div id="question_1_radiobox" class="form-group">-->
-<!--                                            <div class="row" style="padding-bottom:15px;">-->
-<!--                                                <div class="col-sm-3"></div>-->
-<!--                                                <div class="checkbox col-sm-1">-->
-<!--                                                    <input type="radio" name="question_1_answer_radio" id="question_1_answer_radio1" value="option1">-->
-<!--                                                </div>-->
-<!--                                                <div class="col-sm-5">-->
-<!--                                                    <input type="text" class="form-control" id="question_1_answer_input1">-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <div class="row" style="padding-bottom:15px;">-->
-<!--                                                <div class="col-sm-3"></div>-->
-<!--                                                <div class="checkbox col-sm-1">-->
-<!--                                                    <input type="radio" name="question_1_answer_radio" id="question_1_answer_radio2" value="option1">-->
-<!--                                                </div>-->
-<!--                                                <div class="col-sm-5">-->
-<!--                                                    <input type="text" class="form-control" id="question_1_answer_input2">-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                &lt;!&ndash;                        多选类型问题的容器&ndash;&gt;-->
-<!--                                        <div id="question_1_checkbox" class="form-group">-->
+                <!--                &lt;!&ndash;                        单选类型问题的容器&ndash;&gt;-->
+                <!--                                        <div id="question_1_radiobox" class="form-group">-->
+                <!--                                            <div class="row" style="padding-bottom:15px;">-->
+                <!--                                                <div class="col-sm-3"></div>-->
+                <!--                                                <div class="checkbox col-sm-1">-->
+                <!--                                                    <input type="radio" name="question_1_answer_radio" id="question_1_answer_radio1" value="option1">-->
+                <!--                                                </div>-->
+                <!--                                                <div class="col-sm-5">-->
+                <!--                                                    <input type="text" class="form-control" id="question_1_answer_input1">-->
+                <!--                                                </div>-->
+                <!--                                            </div>-->
+                <!--                                            <div class="row" style="padding-bottom:15px;">-->
+                <!--                                                <div class="col-sm-3"></div>-->
+                <!--                                                <div class="checkbox col-sm-1">-->
+                <!--                                                    <input type="radio" name="question_1_answer_radio" id="question_1_answer_radio2" value="option1">-->
+                <!--                                                </div>-->
+                <!--                                                <div class="col-sm-5">-->
+                <!--                                                    <input type="text" class="form-control" id="question_1_answer_input2">-->
+                <!--                                                </div>-->
+                <!--                                            </div>-->
+                <!--                                        </div>-->
+                <!--                &lt;!&ndash;                        多选类型问题的容器&ndash;&gt;-->
+                <!--                                        <div id="question_1_checkbox" class="form-group">-->
 
-<!--                                        </div>-->
-<!--                &lt;!&ndash;                        填空类型问题的容器&ndash;&gt;-->
-<!--                                        <div id="question_1_inputbox" class="form-group">-->
+                <!--                                        </div>-->
+                <!--                &lt;!&ndash;                        填空类型问题的容器&ndash;&gt;-->
+                <!--                                        <div id="question_1_inputbox" class="form-group">-->
 
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </form>-->
-                </div>
+                <!--                                        </div>-->
+                <!--                                    </div>-->
+                <!--                                </form>-->
+            </div>
             <div style="height:60px;"></div>
 
         </div>
-<!--        </div>-->
+        <!--        </div>-->
     </div>
 </div>
 </body>

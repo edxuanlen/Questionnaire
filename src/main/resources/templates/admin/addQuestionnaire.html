@@ -25,6 +25,7 @@
     <title>后台管理</title>
 </head>
 <body>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col" style="height:100px;"></div>
@@ -34,7 +35,7 @@
                 <h1 class="text-center">创建一个新的问卷</h1>
                 <div style="height:20px;"></div>
 <!--                为表单添加基本信息-->
-                <form id="questionnaire_info_form" class="form-horizontal" action="/admin/insert" method="post">
+                <form id="questionnaire_info_form" class="form-horizontal" action="/admin/insert" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="questionnaire_name" class="col-sm-4 control-label">问卷标题</label>
                         <div class="col-sm-5">
@@ -47,6 +48,16 @@
                             <input type="text" id="questionnaire_describe" class="form-control" placeholder="请输入问卷描述" name="qnDescribe">
                         </div>
                     </div>
+
+                    <div class="form-group" >
+                        <table>
+<!--                            <tr>-->
+                                <label for="questionnaire_describe" class="col-sm-4 control-label">问卷描述</label>
+                                <td><input type="file" name="UploadFile"  accept="xls"  ></td>
+<!--                            </tr>-->
+                        </table>
+                    </div>
+
                     <div class="form-group">
                         <label for="questionnaire_describe" class="col-sm-4 control-label">问卷是否发布</label>
                         <div class="col-sm-2">
@@ -60,69 +71,22 @@
                             </label>
                         </div>
                     </div>
+
+
+
                     <div class="form-group">
                        <div class="col-sm-12"></div>
                             <input type="submit" id="next_button" class="btn btn-default" style="width:150px;" value="完成">
                     </div>
                     <div style="height:10px;"></div>
+
+
                 </form>
-<!--&lt;!&ndash;                为表单添加问题&ndash;&gt;-->
-<!--                <form id="questions_form" class="form-horizontal">-->
-<!--&lt;!&ndash;                    问题1&ndash;&gt;-->
-<!--                    <div id="question_1" class="form-group">-->
-<!--&lt;!&ndash;                        问题描述&ndash;&gt;-->
-<!--                        <div class="form-group">-->
-<!--                            <label for="question_1_describe" class="col-sm-3 control-label">1</label>-->
-<!--                            <div class="col-sm-7">-->
-<!--                                <input type="text" class="form-control" id="question_1_describe" placeholder="请输入问题描述">-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--&lt;!&ndash;                        问题类型&ndash;&gt;-->
-<!--                        <div class="form-group">-->
-<!--                            <label class="radio-inline">-->
-<!--                                <input type="radio" name="question_type" id="question_1_type_radio1" value="option1" checked> 单选-->
-<!--                            </label>-->
-<!--                            <label class="radio-inline">-->
-<!--                                <input type="radio" name="question_type" id="question_1_type_radio2" value="option2"> 多选-->
-<!--                            </label>-->
-<!--                            <label class="radio-inline">-->
-<!--                                <input type="radio" name="question_type" id="question_1_type_radio3" value="option3"> 填空-->
-<!--                            </label>-->
-<!--                        </div>-->
-<!--&lt;!&ndash;                        单选类型问题的容器&ndash;&gt;-->
-<!--                        <div id="question_1_radiobox" class="form-group">-->
-<!--                            <div class="row" style="padding-bottom:15px;">-->
-<!--                                <div class="col-sm-3"></div>-->
-<!--                                <div class="checkbox col-sm-1">-->
-<!--                                    <input type="radio" name="question_1_answer_radio" id="question_1_answer_radio1" value="option1">-->
-<!--                                </div>-->
-<!--                                <div class="col-sm-5">-->
-<!--                                    <input type="text" class="form-control" id="question_1_answer_input1">-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="row" style="padding-bottom:15px;">-->
-<!--                                <div class="col-sm-3"></div>-->
-<!--                                <div class="checkbox col-sm-1">-->
-<!--                                    <input type="radio" name="question_1_answer_radio" id="question_1_answer_radio2" value="option1">-->
-<!--                                </div>-->
-<!--                                <div class="col-sm-5">-->
-<!--                                    <input type="text" class="form-control" id="question_1_answer_input2">-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--&lt;!&ndash;                        多选类型问题的容器&ndash;&gt;-->
-<!--                        <div id="question_1_checkbox" class="form-group">-->
 
-<!--                        </div>-->
-<!--&lt;!&ndash;                        填空类型问题的容器&ndash;&gt;-->
-<!--                        <div id="question_1_inputbox" class="form-group">-->
-
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </form>-->
-<!--            </div>-->
         </div>
     </div>
 </div>
 </body>
 </html>
+
+
