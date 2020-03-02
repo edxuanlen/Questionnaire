@@ -3,8 +3,6 @@ package com.run.controller;
 import com.run.mapper.QuestionnaireMapper;
 import com.run.pojo.Questionnaire;
 import com.run.utils.Excel;
-import com.run.utils.UploadExcel;
-import com.run.utils.UploadFile;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -61,8 +59,6 @@ public class BackstageController {
             Excel excel = new Excel();
             System.out.println(excel.upload(file));
             excel.read();
-
-
 
 //            Integer questionnaireId = questionnaireMapper.insertQuestionnaire(questionnaire);
 
