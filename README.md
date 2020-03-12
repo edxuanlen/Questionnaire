@@ -93,11 +93,74 @@ statis: html js css
         - int not null 外键
 
 ## 前端
-
-- login.jsp
-    - 负责登陆跳转至后台界面
-
-
+- login.html
+    - 负责登陆跳转至后台界面 
+- questionnaire.html
+    - 单个问卷展示模板
+- addQuestionnaire.html
+    - 创建新的问卷
+- backstage.html
+    - 后台管理
+    - 查看所有问卷
+- thymeleaf和bootstrap
+    - 1.bootstrap:https://v3.bootcss.com/css/
+        - 格栅系统
+         ```html
+            <div class="form-group">
+              <div class="row" style="padding-bottom:15px;">
+                  <div class="col-sm-3" >
+                  ...
+                  </div>
+              </div>
+            </div>
+         ```
+          
+        - 表格
+        ```html
+           <table class="table">
+           ...
+           </table>
+        ```
+        - 表单
+        ```html
+           <label for="questionnaire_describe" class="col-sm-4 control-label">问卷描述</label>
+        ```
+        - 单选和多选框
+        ```html
+           <div class="radio col-sm-8">
+              <label th:for="question_ + (${qid}) + _answer_radio_ + (${option.getOpId()})">
+                  <th:block th:unless="(${username}) == 'root'" >
+                      <h4 type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:text="(${option.getOpDescribe()})" > </h4>
+                  </th:block>
+              </label>
+           </div>
+        ```
+    - 2.thymeleaf
+        - 添加thymeleaf依赖
+        ```yaml
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            </dependency>
+        ```
+        - 创建用来准备数据的Controller
+        ```
+            @RequestMapping(value = {"/{id}/{type}"})
+                public String getAllQuestions(@PathVariable("id") BigInteger id, @PathVariable("type") String type, Model model, HttpServletRequest request) throws Exception {
+                    //获取所有问题信息
+                    ···
+                    //把问题信息放入Attribute
+                            model.addAttribute("questionnaire_id", id);
+                            model.addAttribute("questionnaire_name", questionnaire.getName());
+                            model.addAttribute("allquestions", list);
+                    ···
+                }
+      
+        ```
+        - 创建questionnaire.html,通过th:each表达式来遍历controller中返回的数据。
+        ```
+            <div th:id="question_ + (${questions.getQId()}) + _box" class="form-group" th:each="questions,index:${allquestions}">
+        ```
 ## 数据库 
 
 1. 数据池
@@ -176,7 +239,6 @@ statis: html js css
 
 excel表导入数据库
 
-### 前端页面 themeleaf +  bootstrap 
 
 ### 后端处理 
 
