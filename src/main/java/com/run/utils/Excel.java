@@ -9,18 +9,29 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.stream.Stream;
 
 public class Excel {
 
-    static String pathName = "C:\\Users\\victor\\Documents\\";
+    //  TODO 定义文件存放的根目录dir
 
+    String pathName = "./temp/";
+    static String filename = new String();
+    /**
+     * 上传文件
+     * @param file 文件
+     * @return 是否成功上传
+     */
     public boolean upload(MultipartFile file){
-        String pname = file.getOriginalFilename();//获取文件名（包括后缀）
+        //获取文件名（包括后缀）
+        String pname = file.getOriginalFilename();
         pathName += pname;
         FileOutputStream fos = null;
         try {
             fos = new FileOutputStream(pathName);
-            fos.write(file.getBytes()); // 写入文件
+            filename = pathName;
+            // 写入文件
+            fos.write(file.getBytes());
             //System.out.println("文件上传成功");
             return true;
         } catch (Exception e) {
@@ -36,8 +47,14 @@ public class Excel {
 
     }
 
-    public void read() throws IOException{
-        FileInputStream inputStream = new FileInputStream(new File("C:\\Users\\victor\\测试.xls"));
+
+    /**
+     * 读取Excel表格中的数据
+     * @param questionnaireId the id of new questionnaire
+     * @throws IOException
+     */
+    public void read(Integer questionnaireId) throws IOException{
+        FileInputStream inputStream = new FileInputStream(new File(filename));
         //读取工作簿
         HSSFWorkbook workBook = new HSSFWorkbook(inputStream);
         //读取工作表
@@ -48,23 +65,36 @@ public class Excel {
         int rowCnt =  1;
         for (HSSFRow row = sheet.getRow(rowCnt); row.getCell(rowCnt) != null; rowCnt ++ ){
             row = sheet.getRow(rowCnt);
-            String QuestionType = row.getCell(0).getStringCellValue();
-            String QDescribe = row.getCell(1).getStringCellValue();
+            String questionType = row.getCell(0).getStringCellValue();
+            String qDescribe = row.getCell(1).getStringCellValue();
 
-            System.out.println(QDescribe + QuestionType);
+
             int colCnt = 2;
-            if ( !QuestionType.equals("主观题") ) {
+            if ( !questionType.equals("主观题") ) {
+                if (questionType.equals("单选")){
+                    questionType = "radio";
+                } else {
+                    questionType = "checkbox";
+                }
+
+                // insert qDescribe questionType where id = questionnaireId
+
+
+
                 while ( row.getCell(colCnt) != null ){
                     String OpDescribe = row.getCell(colCnt).getStringCellValue();
                     System.out.println(OpDescribe);
                     colCnt ++;
                 }
+            } else {
+                questionType = "subjective";
             }
+
             System.out.println();
 
         }
 
         inputStream.close();
-        workBook.close();//最后记得关闭工作簿
+        workBook.close();
     }
 }

@@ -108,7 +108,7 @@ public class QuestionnaireController {
         BigInteger QId;
         String s = "options";
         List<QuestionOption> option_list;
-        HashMap<BigInteger, List<QuestionOption>> M = new HashMap<>();
+        HashMap<BigInteger, List<QuestionOption>> M = new HashMap<BigInteger, List<QuestionOption>>();
         for(int i = 0; i < total; i ++) {
             QId = list.get(i).getQId();
             option_list = questionnaireMapper.getQuestionOptionById(QId);
