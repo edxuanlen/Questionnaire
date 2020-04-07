@@ -29,8 +29,9 @@ import static org.eclipse.jdt.internal.compiler.codegen.ConstantPool.ValueOf;
 // api-value：定义名称，如果没有定义，则默认显示类名
 @Api(value = "Questionnaire Controller", tags = "Questionnaire Control Tag")
 public class QuestionnaireController {
+
     @Autowired
-    QuestionnaireMapper questionnaireMapper;
+    private QuestionnaireMapper questionnaireMapper;
 
     static final String QUESTION = "question";
     static final String OPTION = "option";
@@ -48,8 +49,10 @@ public class QuestionnaireController {
 //
 //            String[] postNameSplit = key.split("_");
 //
-//            System.out.println(postNameSplit[0]);
+//            System.out.println();
 //
+//            System.out.println(postNameSplit[0]);
+
 //            if (postNameSplit[0].equals(QUESTION)){
 //                String questionId = postNameSplit[1];
 //                String questionDescribe = entry.getValue()[0].split(". ")[1];
@@ -60,7 +63,7 @@ public class QuestionnaireController {
 //                String optionDescribe = entry.getValue()[0];
 //                System.out.println( "   option" + optionId + ": " + optionDescribe);
 //            }
-//
+
 //        }
 
         return m;

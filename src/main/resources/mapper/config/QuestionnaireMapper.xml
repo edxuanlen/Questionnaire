@@ -27,7 +27,8 @@
     </select>
 
 
-    <insert id="insertQuestionnaire" parameterType="string" keyProperty="id" useGeneratedKeys="true">
+    <insert id="insertQuestionnaire" parameterType="com.run.pojo.Questionnaire"
+            useGeneratedKeys="true" keyProperty="id" >
         INSERT INTO questionnaire (`name`,`qn_describe`,`status`) VALUES (#{name}, #{qnDescribe},#{status})
     </insert>
 

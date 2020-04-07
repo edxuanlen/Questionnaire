@@ -14,5 +14,12 @@ public class QuestionOption {
     private String opDescribe;
     private BigInteger qId;
     private Integer selectedNum;
+
+    public QuestionOption(String opDescribe, BigInteger qId) {
+        this.opDescribe = opDescribe;
+        this.qId = qId;
+    }
+
+    public QuestionOption(){}
 }
 

@@ -5,7 +5,6 @@ import com.run.pojo.QuestionOption;
 import com.run.pojo.Questionnaire;
 import org.apache.ibatis.annotations.Mapper;
 
-import javax.swing.*;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -70,6 +69,9 @@ public interface QuestionnaireMapper {
 
 
     // TODO 有必要添加更改题目type
+
+
+
     
 
 }

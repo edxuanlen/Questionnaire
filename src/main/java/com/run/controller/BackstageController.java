@@ -1,5 +1,6 @@
 package com.run.controller;
 
+import com.run.mapper.QuestionMapper;
 import com.run.mapper.QuestionnaireMapper;
 import com.run.pojo.Questionnaire;
 import com.run.utils.Excel;
@@ -30,7 +31,8 @@ import java.util.List;
 public class BackstageController {
 
     @Autowired
-    QuestionnaireMapper questionnaireMapper;
+    private QuestionnaireMapper questionnaireMapper;
+
     /**跳转后台管理页面并获取问卷信息*/
     @GetMapping("")
     public String getAllQuestionnaire(Model model) throws Exception {
@@ -53,7 +55,7 @@ public class BackstageController {
      * @throws IOException 文件读取的IO异常
      */
     @PostMapping("/insert")
-    public String save(@Valid Questionnaire questionnaire, @RequestParam("UploadFile") MultipartFile file, BindingResult bindingResult) throws IOException {
+    public String save(@Valid Questionnaire questionnaire, @RequestParam("UploadFile") MultipartFile file, BindingResult bindingResult) throws Exception {
         if(bindingResult.hasErrors()){
             // TODO 返回页面不应该是一个字串
             return "问卷名称或问卷描述为空！";
@@ -62,19 +64,17 @@ public class BackstageController {
 //            System.out.println(bindingResult);
 //            System.out.println(file);
 
-
             System.out.println(questionnaire.getName());
             System.out.println(questionnaire.getQnDescribe());
-//            Integer questionnaireId = questionnaireMapper.insertQuestionnaire(questionnaire);
-            Integer questionnaireId = 1000;
+
+            questionnaireMapper.insertQuestionnaire(questionnaire);
+            BigInteger questionnaireId = questionnaire.getId();
             Excel excel = new Excel();
-            System.out.println(excel.upload(file));
-            excel.read(questionnaireId);
-
-
-
-
-
+            boolean uploadSuccess = excel.upload(file);
+            if(uploadSuccess){
+                System.out.println("ID" + questionnaireId);
+                excel.read(questionnaireId);
+            }
 
             return "redirect:/admin/";
         }

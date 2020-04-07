@@ -1,17 +1,38 @@
 package com.run.utils;
 
+import com.run.mapper.QuestionMapper;
+import com.run.mapper.QuestionOptionMapper;
+import com.run.pojo.Question;
+import com.run.pojo.QuestionOption;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.stream.Stream;
 
+/**
+ * Excel相关操作
+ * @author edxuanlen
+ * @version 1.0
+ */
+
+
 public class Excel {
+
+    private QuestionMapper questionMapper =
+            SpringUtil.getBean(QuestionMapper.class);
+
+    private QuestionOptionMapper questionOptionMapper =
+            SpringUtil.getBean(QuestionOptionMapper.class);
 
     //  TODO 定义文件存放的根目录dir
 
@@ -51,9 +72,10 @@ public class Excel {
     /**
      * 读取Excel表格中的数据
      * @param questionnaireId the id of new questionnaire
-     * @throws IOException
+     * @throws IOException read 失败
      */
-    public void read(Integer questionnaireId) throws IOException{
+
+    public void read(BigInteger questionnaireId) throws Exception {
         FileInputStream inputStream = new FileInputStream(new File(filename));
         //读取工作簿
         HSSFWorkbook workBook = new HSSFWorkbook(inputStream);
@@ -68,30 +90,37 @@ public class Excel {
             String questionType = row.getCell(0).getStringCellValue();
             String qDescribe = row.getCell(1).getStringCellValue();
 
-
-            int colCnt = 2;
-            if ( !questionType.equals("主观题") ) {
-                if (questionType.equals("单选")){
+            if ( !"主观题".equals(questionType) ) {
+                if ("单选".equals(questionType)){
                     questionType = "radio";
                 } else {
                     questionType = "checkbox";
-                }
-
-                // insert qDescribe questionType where id = questionnaireId
-
-
-
-                while ( row.getCell(colCnt) != null ){
-                    String OpDescribe = row.getCell(colCnt).getStringCellValue();
-                    System.out.println(OpDescribe);
-                    colCnt ++;
                 }
             } else {
                 questionType = "subjective";
             }
 
-            System.out.println();
+            Question question = new Question(qDescribe, questionnaireId, questionType);
+            System.out.println(question.toString());
+            System.out.println(questionMapper);
+            questionMapper.insertQuestion(question);
+            BigInteger qId = question.getQId();
 
+            int colCnt = 2;
+
+            while ( row.getCell(colCnt) != null ){
+
+
+                String opDescribe = row.getCell(colCnt).getStringCellValue();
+                QuestionOption questionOption =
+                        new QuestionOption(opDescribe, qId);
+
+                questionOptionMapper.insertQuestionOption(questionOption);
+                System.out.println(questionOption.toString());
+                colCnt ++;
+            }
+
+            System.out.println();
         }
 
         inputStream.close();

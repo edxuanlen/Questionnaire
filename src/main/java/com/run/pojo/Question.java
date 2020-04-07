@@ -16,4 +16,13 @@ public class Question {
     private String qDescribe;
     private BigInteger id;
     private String questionType;
+
+    public Question(String qDescribe, BigInteger id,
+                    String questionType) {
+        this.qDescribe = qDescribe;
+        this.id = id;
+        this.questionType = questionType;
+    }
+
+    public Question(){}
 }
