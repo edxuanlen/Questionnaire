@@ -11,4 +11,10 @@
             (#{opDescribe}, #{qId});
     </insert>
 
+    <update id="updateQuestionOptionSelectNumber"
+            parameterType="BigInteger">
+        update question_option set selected_num = selected_num + 1 where
+            op_id = #{opId};
+    </update>
+    
 </mapper>

@@ -35,9 +35,19 @@ public class BackstageController {
 
     /**跳转后台管理页面并获取问卷信息*/
     @GetMapping("")
-    public String getAllQuestionnaire(Model model) throws Exception {
+    public String getAllQuestionnaire(Model model, HttpServletRequest request) throws Exception {
         List<Questionnaire> list = questionnaireMapper.getQuestionnaireAll();
         model.addAttribute("allquestionnaire",list);
+
+        String username = null;
+        try{
+            username = request.getUserPrincipal().getName();
+        } catch (Exception e){
+            System.out.println(e);
+        }
+
+        model.addAttribute("username", username);
+
         return "/admin/backstage";
     }
     /**跳转问卷添加页面*/

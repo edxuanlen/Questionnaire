@@ -55,13 +55,6 @@ public interface QuestionnaireMapper {
 
     // TODO 更新Option
 
-    /**
-     * @param opId option id
-     * @param opDescribe option describe
-     * @return update status
-     * @throws Exception update error
-     */
-    boolean updateOfQuestionOptionById (BigInteger opId, String opDescribe) throws Exception;
 
     // TODO 更新Question Describe
 

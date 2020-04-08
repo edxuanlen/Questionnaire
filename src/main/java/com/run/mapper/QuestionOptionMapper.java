@@ -21,4 +21,22 @@ public interface QuestionOptionMapper {
      */
     int insertQuestionOption(QuestionOption questionOption);
 
+    /**
+     * 通过option id更新问题描述
+     * @param opId option id
+     * @param opDescribe option describe
+     * @return update status
+     * @throws Exception update error
+     */
+    boolean updateOfQuestionOptionById (BigInteger opId, String opDescribe) throws Exception;
+
+
+    /**
+     * 通过option id 增加选择人数
+     * @param opId option id
+     * @return update status
+     * @throws Exception update error
+     */
+    boolean updateQuestionOptionSelectNumber (BigInteger opId) throws Exception;
+
 }

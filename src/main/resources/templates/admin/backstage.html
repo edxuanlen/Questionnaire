@@ -31,17 +31,22 @@
     <title>后台管理</title>
 </head>
 <body>
-    <h1 class="text-center">后台管理系统</h1>
+    <th:block th:if="(${username}) == 'root' ">
+        <h1 class="text-center">后台管理系统</h1>
+    </th:block>
     <div class="container-fluid">
         <div class="row">
             <div class="col">
                 <div id="Questionnaires_box">
                     <div style="height: 14px;"></div>
-                    <div style="height:45px;">
-                        <a th:href="@{'/admin/add'}">
-                            <input id="add_button" type="button" value="添加问卷" class="btn btn-default">
-                        </a>
-                    </div>
+
+                    <th:block th:if="(${username}) == 'root' ">
+                        <div style="height:45px;">
+                            <a th:href="@{'/admin/add'}">
+                                <input id="add_button" type="button" value="添加问卷" class="btn btn-default">
+                            </a>
+                        </div>
+                    </th:block>
                     <div id="content">
                         <table id="questionnaires_table" class="table table-striped">
                             <tr th:id="questionnaire + (${ques.id})" th:each="ques : ${allquestionnaire}">

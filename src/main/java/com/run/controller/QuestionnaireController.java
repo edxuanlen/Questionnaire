@@ -1,12 +1,12 @@
 package com.run.controller;
 
+import com.run.mapper.QuestionOptionMapper;
 import com.run.mapper.QuestionnaireMapper;
+import com.run.mapper.SubjectiveQuestionAnswerMapper;
 import com.run.pojo.Question;
 import com.run.pojo.QuestionOption;
 import com.run.pojo.Questionnaire;
 import io.swagger.annotations.Api;
-import org.apache.ibatis.jdbc.Null;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,13 +14,12 @@ import org.springframework.web.bind.annotation.*;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.math.BigInteger;
-import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static org.eclipse.jdt.internal.compiler.codegen.ConstantPool.ValueOf;
+import java.util.regex.Pattern;
 
 
 @Controller
@@ -33,17 +32,65 @@ public class QuestionnaireController {
     @Autowired
     private QuestionnaireMapper questionnaireMapper;
 
+    @Autowired
+    private QuestionOptionMapper questionOptionMapper;
+
+    @Autowired
+    private SubjectiveQuestionAnswerMapper subjectiveQuestionAnswerMapper;
+
     static final String QUESTION = "question";
     static final String OPTION = "option";
     static final String ROOT = "root";
 
 
     @RequestMapping(value = {"/update"}, method = RequestMethod.POST)
-    @ResponseBody
-    public Map<String, String[]> updateForQuestionnaire(Model model, HttpServletRequest request) throws Exception{
+//    @ResponseBody
+    public void updateForQuestionnaire(Model model,
+                                         HttpServletRequest request,
+                                         HttpServletResponse response) throws Exception{
 
 
         Map<String, String[]> m = request.getParameterMap();
+        String type = String.valueOf(m.get("type")[0]);
+        if (type != null){
+            System.out.println("questionnaire type:" + type);
+            if (type.equals("view")){
+                BigInteger questionnaireId = new BigInteger(m.get("id")[0]);
+                System.out.println("questionnaire id: " + questionnaireId);
+
+                for (Map.Entry<String, String[]> entry : m.entrySet()){
+                    String key = entry.getKey();
+                    System.out.println("key : " + key);
+                    if(Pattern.matches("text.*", key)){
+                        String text = entry.getValue()[0];
+                        BigInteger qId = new BigInteger(key.split("_")[1]);
+                        subjectiveQuestionAnswerMapper.insertNewSubjectiveQuestionAnswer(qId, text);
+//                        System.out.println("text: " + text + "id: " + qId);
+                    }
+                    else if (!key.equals("type") && !key.equals("id")){
+                        String[] values = entry.getValue();
+                        for (String value : values){
+                            BigInteger opId = new BigInteger(value);
+                            questionOptionMapper.updateQuestionOptionSelectNumber(opId);
+//                            System.out.println(value);
+                        }
+                    }
+
+                }
+
+                response.sendRedirect("../admin");
+//                return "/admin/backstage";
+            } else {
+
+            }
+
+
+
+        } else{
+            System.out.println("No type");
+        }
+
+
 //        for (Map.Entry<String, String[]> entry: m.entrySet()){
 //            String key = entry.getKey();
 //
@@ -66,7 +113,6 @@ public class QuestionnaireController {
 
 //        }
 
-        return m;
     }
 
     @RequestMapping(value = {"/{id}/{type}"})

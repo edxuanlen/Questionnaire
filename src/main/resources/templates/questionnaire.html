@@ -71,8 +71,6 @@
 
                                 <!--/*@thymesVar id="option" type="com.run.pojo.QuestionOption"*/-->
                                 <!--/*@thymesVar id="options" type="java.util.HashMap"*/-->
-                                <!--                                <h4 th:text="(${qid})"></h4>-->
-                                <!--                                <h4 th:each="option:${options.get(qid)}" th:text="(${option})"></h4>-->
 
 
                                 <!--                                单选题的容器-->
@@ -82,13 +80,9 @@
                                     <div th:id="question_ + (${qid})" class="form-group">
 
                                         <div class="row" style="padding-bottom:15px;">
-                                            <!--                                            <div class="col-sm-3"></div>-->
                                             <div class="col-sm-3" ></div>
-
                                             <div class="radio col-sm-8">
                                                 <!--/*@thymesVar id="option" type="com.run.pojo.QuestionOption"*/-->
-                                                <!--                                                <div class="row col-sm-8">-->
-
                                                 <th:block th:if = "(${username}) == 'root'" >
                                                     <div class="row col-sm-8">
                                                         <input th:name="option_ + (${option.getOpId()})" type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:value="(${option.getOpDescribe()})" >
@@ -96,14 +90,14 @@
                                                     </div>
                                                 </th:block>
 
-
                                                 <th:block th:unless = "(${username}) == 'root'" >
-                                                    <input type="radio" th:name="(${qid})"   th:id="question_ + (${qid}) + _answer_radio_ + (${option.getOpId()})" th:value="(${option.getOpDescribe()})">
+                                                    <input type="radio" th:name="(${qid})"   th:id="question_ + (${qid}) + _answer_radio_ + (${option.getOpId()})" th:value="(${option.getOpId()})">
 
                                                 </th:block>
                                                 <label th:for="question_ + (${qid}) + _answer_radio_ + (${option.getOpId()})">
                                                     <th:block th:unless="(${username}) == 'root'" >
-                                                        <h4 type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:text="(${option.getOpDescribe()})" > </h4>
+                                                        <h4 th:name="(${option.getOpId()})" type="text"
+                                                             class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:text="(${option.getOpDescribe()})" > </h4>
 
                                                     </th:block>
                                                 </label>
@@ -136,23 +130,28 @@
 
                                                 <!--/*@thymesVar id="option" type="com.run.pojo.QuestionOption"*/-->
                                                 <th:block th:unless = "(${username}) == 'root'" >
-                                                    <input type="checkbox" th:name="(${qid})"   th:id="question_ + (${qid}) + _answer_radio_ + (${option.getOpId()}) " th:value="(${option.getOpDescribe()})">
+                                                    <input type="checkbox"
+                                                           th:name="(${qid})"
+                                                           th:id="question_ + (${qid}) + _answer_radio_ + (${option.getOpId()}) " th:value="(${option.getOpId()})">
                                                 </th:block>
 
-                                                <label th:for="question_ + (${qid}) + _answer_radio_ + (${option.getOpId()})">
+                                                <label th:for="question_ + (${qid}) + _answer_radio_ + (${option.getOpId()})"  >
                                                     <th:block th:if = "(${username}) == 'root'" >
                                                         <input th:name="option_ + (${option.getOpId()})" type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:value="(${option.getOpDescribe()})" > </input>
                                                     </th:block>
                                                     <th:block th:unless="(${username}) == 'root'" >
-                                                        <h4 type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:text="(${option.getOpDescribe()})" > </h4>
+                                                        <h4
+                                                                th:name="(${option.getOpId()})" type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})"
+                                                                th:text="(${option.getOpDescribe()})" > </h4>
                                                     </th:block>
-                                                    <!--                                                    <input type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:value="(${option.getOpDescribe()})" > </input>-->
-                                                    <!--                                                    <h4 type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" th:text="(${option.getOpDescribe()})" > </h4>-->
+
                                                 </label>
                                                 <th:block th:if = "(${username}) == 'viewer' or (${username}) == 'root'" >
                                                     <div float="right" th:text="(${option.getSelectedNum()}) + 人选择此项"></div>
                                                 </th:block>
                                             </div>
+
+
                                             <!--                                                &lt;!&ndash;/*@thymesVar id="option" type="com.run.pojo.QuestionOption"*/&ndash;&gt;-->
                                             <!--&lt;!&ndash;                                                <input type="text" class="form-control" th:id="question_ + (${qid}) + _answer_input_ + (${option.getOpId()})" disabled th:value="(${option.getOpDescribe()})" >&ndash;&gt;-->
                                             <!--                                                <label th:for="question_ + (${qid}) + _answer_radio_ + (${option.getOpId()})" >-->
@@ -165,8 +164,22 @@
                                             <!--                                                </label>-->
                                             <!--                                            </div>-->
                                         </div>
+
                                     </div>
 
+                                </th:block>
+
+                                <th:block
+                                        th:if="${questions.getQuestionType()} == 'subjective'" >
+                                    <div id="question_1_inputbox" class="form-group">
+                                        <div class="col-sm-3" ></div>
+                                        <div class="col-sm-8" >
+                                            <textarea th:name="text_+(${qid})"
+                                                      rows="10" cols="80">
+
+                                            </textarea>
+                                        </div>
+                                    </div>
                                 </th:block>
 
                             </div>
@@ -177,7 +190,8 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="col-sm-5" ></div>
-                            <button type="submit" class="btn btn-default btn-lg">提交</button>
+                            <button type="submit"
+                                    class="btn btn-default btn-lg" >提交</button>
                         </div>
                     </div>
                     <div style="height:20px;"></div>
