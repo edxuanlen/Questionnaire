@@ -16,5 +16,10 @@
         update question_option set selected_num = selected_num + 1 where
             op_id = #{opId};
     </update>
+
+    <update id="updateOfQuestionOptionById" >
+        update question_option set op_describe = #{opDescribe} where op_id =
+        #{opId};
+    </update>
     
 </mapper>

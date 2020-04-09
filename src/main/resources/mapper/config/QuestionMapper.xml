@@ -10,4 +10,8 @@
         values (#{qDescribe}, #{id}, #{questionType});
     </insert>
 
+    <update id="updateQuestionDescribe" >
+        update question set q_describe = #{qDescribe} where q_id = #{qId};
+    </update>
+
 </mapper>

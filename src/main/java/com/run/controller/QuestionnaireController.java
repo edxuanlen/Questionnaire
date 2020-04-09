@@ -1,5 +1,6 @@
 package com.run.controller;
 
+import com.run.mapper.QuestionMapper;
 import com.run.mapper.QuestionOptionMapper;
 import com.run.mapper.QuestionnaireMapper;
 import com.run.mapper.SubjectiveQuestionAnswerMapper;
@@ -38,6 +39,9 @@ public class QuestionnaireController {
     @Autowired
     private SubjectiveQuestionAnswerMapper subjectiveQuestionAnswerMapper;
 
+    @Autowired
+    private QuestionMapper questionMapper;
+
     static final String QUESTION = "question";
     static final String OPTION = "option";
     static final String ROOT = "root";
@@ -52,12 +56,12 @@ public class QuestionnaireController {
 
         Map<String, String[]> m = request.getParameterMap();
         String type = String.valueOf(m.get("type")[0]);
+        BigInteger questionnaireId = new BigInteger(m.get("id")[0]);
+        System.out.println("questionnaire id: " + questionnaireId);
+
         if (type != null){
             System.out.println("questionnaire type:" + type);
             if (type.equals("view")){
-                BigInteger questionnaireId = new BigInteger(m.get("id")[0]);
-                System.out.println("questionnaire id: " + questionnaireId);
-
                 for (Map.Entry<String, String[]> entry : m.entrySet()){
                     String key = entry.getKey();
                     System.out.println("key : " + key);
@@ -75,44 +79,37 @@ public class QuestionnaireController {
 //                            System.out.println(value);
                         }
                     }
-
                 }
 
-                response.sendRedirect("../admin");
-//                return "/admin/backstage";
             } else {
+                for (Map.Entry<String, String[]> entry: m.entrySet()) {
+                    String key = entry.getKey();
 
+                    if ("type".equals(key) || "id".equals(key)){
+                        continue;
+                    }
+                    String[] postNameSplit = key.split("_");
+
+                    if (postNameSplit[0].equals(QUESTION)) {
+                        BigInteger questionId =
+                                new BigInteger(postNameSplit[1]);
+                        String questionDescribe = entry.getValue()[0].split(". ")[1];
+                        System.out.println("question" + questionId + ": " + questionDescribe);
+
+                        questionMapper.updateQuestionDescribe(questionId,
+                                questionDescribe.trim());
+                    } else {
+                        BigInteger optionId = new BigInteger(postNameSplit[1]);
+                        String optionDescribe = entry.getValue()[0];
+                        System.out.println("option" + optionId + ": " + optionDescribe);
+                        questionOptionMapper.updateOfQuestionOptionById(optionId, optionDescribe.trim());
+                    }
+                }
             }
-
-
-
         } else{
             System.out.println("No type");
         }
-
-
-//        for (Map.Entry<String, String[]> entry: m.entrySet()){
-//            String key = entry.getKey();
-//
-//            String[] postNameSplit = key.split("_");
-//
-//            System.out.println();
-//
-//            System.out.println(postNameSplit[0]);
-
-//            if (postNameSplit[0].equals(QUESTION)){
-//                String questionId = postNameSplit[1];
-//                String questionDescribe = entry.getValue()[0].split(". ")[1];
-//                System.out.println( "question" + questionId + ": " + questionDescribe);
-//
-//            } else {
-//                String optionId = postNameSplit[1];
-//                String optionDescribe = entry.getValue()[0];
-//                System.out.println( "   option" + optionId + ": " + optionDescribe);
-//            }
-
-//        }
-
+        response.sendRedirect("../admin");
     }
 
     @RequestMapping(value = {"/{id}/{type}"})

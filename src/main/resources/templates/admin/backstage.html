@@ -31,9 +31,35 @@
     <title>后台管理</title>
 </head>
 <body>
+    <nav class="navbar navbar-default navbar-inverse navbar-fixed-top"
+         role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" >LOGO</a>
+            </div>
+            <ul class="nav navbar-nav">
+
+                <th:block th:if="(${username}) == 'root' ">
+                    <li><a target="_blank" href="./logout" th:target="_self">退出登陆
+                    </a></li>
+                </th:block>
+                <th:block th:unless="(${username}) == 'root' ">
+                    <li><a target="_blank" href="./login"
+                           th:target="_self">管理员登陆
+                    </a></li>
+                </th:block>
+            </ul>
+        </div>
+    </nav>
+
+    <th:block th:unless="(${username}) == 'root'">
+        <div style="height:120px;"></div>
+    </th:block>
     <th:block th:if="(${username}) == 'root' ">
+        <div style="height:60px;"></div>
         <h1 class="text-center">后台管理系统</h1>
     </th:block>
+
     <div class="container-fluid">
         <div class="row">
             <div class="col">

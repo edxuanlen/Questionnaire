@@ -29,6 +29,36 @@
 </head>
 <body>
 <div class="container-fluid">
+    <th:block th:if="(${username} eq 'root') or (${username} eq 'viewer') " >
+        <nav class="navbar navbar-default navbar-inverse navbar-fixed-top"
+             role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" >LOGO</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a target="_blank" href="../../admin"
+                           th:target="_self">
+                        返回主页面</a></li>
+                </ul>
+                <th:block th:if="${username} == 'viewer'">
+                    <ul class="nav navbar-nav">
+                        <li><a target="_blank" href="./change" th:target="_self">
+                            更改</a></li>
+                    </ul>
+                </th:block>
+                <th:block th:if="${username} == 'root'">
+                    <ul class="nav navbar-nav">
+                        <li><a target="_blank" href="./view" th:target="_self">
+                            预览</a></li>
+                    </ul>
+                </th:block>
+
+
+            </div>
+        </nav>
+    </th:block>
+
     <div class="row">
         <div class="col" style="height:100px;"></div>
         <div class="col">

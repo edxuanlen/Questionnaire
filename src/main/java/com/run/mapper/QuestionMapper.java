@@ -16,9 +16,18 @@ public interface QuestionMapper {
     /**
      * 插入一个问题
      * @param question 问题
-     * @return 返回插入的id
      * @throws Exception 查询异常
      */
-    Integer insertQuestion(Question question) throws Exception;
+    void insertQuestion(Question question) throws Exception;
+
+
+    /**
+     * 更新问题描述
+     * @param qId question id
+     * @param qDescribe question describe
+     * @return update status
+     * @throws Exception update error
+     */
+    boolean updateQuestionDescribe(BigInteger qId, String qDescribe) throws Exception;
 
 }
