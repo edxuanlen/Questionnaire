@@ -40,11 +40,11 @@
             <ul class="nav navbar-nav">
 
                 <th:block th:if="(${username}) == 'root' ">
-                    <li><a target="_blank" href="./logout" th:target="_self">退出登陆
+                    <li><a target="_blank" href="../logout" th:target="_self">退出登陆
                     </a></li>
                 </th:block>
                 <th:block th:unless="(${username}) == 'root' ">
-                    <li><a target="_blank" href="./login"
+                    <li><a target="_blank" href="../login"
                            th:target="_self">管理员登陆
                     </a></li>
                 </th:block>

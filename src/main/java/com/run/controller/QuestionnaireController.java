@@ -7,7 +7,6 @@ import com.run.mapper.SubjectiveQuestionAnswerMapper;
 import com.run.pojo.Question;
 import com.run.pojo.QuestionOption;
 import com.run.pojo.Questionnaire;
-import com.sun.deploy.net.HttpResponse;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -171,6 +170,7 @@ public class QuestionnaireController {
 
                 questionMapper.deleteQuestionById(id);
                 questionnaireMapper.deleteQuestionnaireById(id);
+                response.sendRedirect("../../admin");
                 return "admin/backstage";
             } else {
                 return "error/404";

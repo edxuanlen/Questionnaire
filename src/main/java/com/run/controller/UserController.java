@@ -5,7 +5,6 @@ import com.run.annotation.Table;
 import com.run.mapper.UserMapper;
 import com.run.pojo.User;
 import com.run.service.BaseServiceClient;
-import com.sun.deploy.net.HttpResponse;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

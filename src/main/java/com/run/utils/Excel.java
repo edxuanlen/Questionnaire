@@ -35,8 +35,8 @@ public class Excel {
             SpringUtil.getBean(QuestionOptionMapper.class);
 
     //  TODO 定义文件存放的根目录dir
-
-    String pathName = "/tmp/";
+    String pathName = "./temp/";
+//    String pathName = "/tmp/";
     static String filename = new String();
     /**
      * 上传文件
@@ -85,8 +85,12 @@ public class Excel {
 //        HSSFRow row = sheet.getRow(2);
 
         int rowCnt =  1;
-        for (HSSFRow row = sheet.getRow(rowCnt); row.getCell(rowCnt) != null; rowCnt ++ ){
+        int RowNum = sheet.getLastRowNum();
+        HSSFRow row = sheet.getRow(rowCnt);
+//        for ( ; row.getCell(rowCnt) != null; rowCnt ++ ){
+            for ( ; rowCnt <= RowNum; rowCnt ++ ){
             row = sheet.getRow(rowCnt);
+            System.out.println(rowCnt);
             String questionType = row.getCell(0).getStringCellValue();
             String qDescribe = row.getCell(1).getStringCellValue();
 
@@ -102,7 +106,7 @@ public class Excel {
 
             Question question = new Question(qDescribe, questionnaireId, questionType);
             System.out.println(question.toString());
-            System.out.println(questionMapper);
+
             questionMapper.insertQuestion(question);
             BigInteger qId = question.getQId();
 
