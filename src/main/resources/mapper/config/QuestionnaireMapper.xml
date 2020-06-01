@@ -32,4 +32,9 @@
         INSERT INTO questionnaire (`name`,`qn_describe`,`status`) VALUES (#{name}, #{qnDescribe},#{status})
     </insert>
 
+
+    <delete id="deleteQuestionnaireById" >
+        delete from questionnaire where id = #{id};
+    </delete>
+
 </mapper>

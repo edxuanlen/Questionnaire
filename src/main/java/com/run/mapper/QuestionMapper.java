@@ -4,6 +4,7 @@ import com.run.pojo.Question;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.math.BigInteger;
+import java.util.List;
 
 /**
  * @author: edxuanlen
@@ -29,5 +30,21 @@ public interface QuestionMapper {
      * @throws Exception update error
      */
     boolean updateQuestionDescribe(BigInteger qId, String qDescribe) throws Exception;
+
+
+    /**
+     * @param Id quesitonnaire id
+     * @return quesiton options id
+     * @throws Exception error
+     */
+    List<BigInteger> getQuestionIdById(BigInteger Id) throws Exception;
+
+
+    /**
+     * delete Question by questionnaire id
+     * @param Id questionnaire Id
+     * @throws Exception error
+     */
+    void deleteQuestionById(BigInteger Id) throws Exception;
 
 }

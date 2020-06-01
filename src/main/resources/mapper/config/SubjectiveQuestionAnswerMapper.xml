@@ -9,4 +9,12 @@
             (#{qId}, #{content});
     </insert>
 
+    <delete id="deleteSubjectiveQuestionAnswerByQuestionId">
+        delete from subjective_question_answer where q_id = #{qId};
+    </delete>
+
+    <select id="getSubjectiveQuestionAnswerByQuestionId" resultType="String">
+        select content from subjective_question_answer where q_id = #{qId};
+    </select>
+
 </mapper>

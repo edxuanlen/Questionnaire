@@ -14,4 +14,12 @@
         update question set q_describe = #{qDescribe} where q_id = #{qId};
     </update>
 
+    <select id="getQuestionIdById" resultType="BigInteger">
+        select q_id from question where id = #{id};
+    </select>
+
+    <delete id="deleteQuestionById" >
+        delete from question where id = #{id};
+    </delete>
+
 </mapper>

@@ -63,8 +63,11 @@ public interface QuestionnaireMapper {
 
     // TODO 有必要添加更改题目type
 
-
-
-    
+    /**
+     * delete questionnaire by id
+     * @param id questionnaire id
+     * @throws Exception error
+     */
+    void deleteQuestionnaireById(BigInteger id) throws Exception;
 
 }

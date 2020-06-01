@@ -4,6 +4,7 @@ import com.run.pojo.QuestionOption;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.math.BigInteger;
+import java.util.List;
 
 /**
  * @author: edxuanlen
@@ -25,4 +26,12 @@ public interface SubjectiveQuestionAnswerMapper {
                                            String content) throws Exception;
 
 
+    /**
+     * delete Subjective Question answer bu question id
+     * @param qId question id
+     * @throws Exception error
+     */
+    void deleteSubjectiveQuestionAnswerByQuestionId(BigInteger qId) throws Exception;
+
+    List<String> getSubjectiveQuestionAnswerByQuestionId(BigInteger qId) throws Exception;
 }

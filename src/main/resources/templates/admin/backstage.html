@@ -76,8 +76,14 @@
                     <div id="content">
                         <table id="questionnaires_table" class="table table-striped">
                             <tr th:id="questionnaire + (${ques.id})" th:each="ques : ${allquestionnaire}">
-                                <td>
-                                    <a th:href="@{'/questionnaire/' + ${ques.getId()} + '/view'}"><h4 th:text="${ques.getName()}"></h4></a>
+                                <td style="display: flex;justify-content: space-around; align-content: baseline">
+                                    <div class="col-sm-8">
+                                        <a th:href="@{'/questionnaire/' + ${ques.getId()} + '/view'}"><h4 th:text="${ques.getName()}"></h4></a>
+                                    </div>
+                                    <th:block th:if="(${username}) == 'root' ">
+                                        <a th:href="@{'/questionnaire/' + ${ques.getId()} + '/delete'}"><h4 th:text="删除"></h4></a>
+                                        <a th:href="@{'/questionnaire/' + ${ques.getId()} + '/gettxt'}"><h4 th:text="导出主观题"></h4></a>
+                                    </th:block>
                                 </td>
                             </tr>
 

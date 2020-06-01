@@ -36,7 +36,7 @@ public class Excel {
 
     //  TODO 定义文件存放的根目录dir
 
-    String pathName = "./temp/";
+    String pathName = "/tmp/";
     static String filename = new String();
     /**
      * 上传文件

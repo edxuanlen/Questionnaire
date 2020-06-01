@@ -48,12 +48,12 @@ public class BackstageController {
 
         model.addAttribute("username", username);
 
-        return "/admin/backstage";
+        return "admin/backstage";
     }
     /**跳转问卷添加页面*/
     @GetMapping("/add")
     public String addQuestionniare() throws Exception{
-        return "/admin/addQuestionnaire";
+        return "admin/addQuestionnaire";
     }
 
     /**

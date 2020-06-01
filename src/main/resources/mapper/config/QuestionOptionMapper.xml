@@ -21,5 +21,9 @@
         update question_option set op_describe = #{opDescribe} where op_id =
         #{opId};
     </update>
+
     
+    <delete id="deleteQuestionOptionByQuestionId" >
+        delete from question_option where q_id = #{qId};
+    </delete>
 </mapper>

@@ -3,7 +3,9 @@ package com.run.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.ServletSecurityElement;
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,16 +17,17 @@ import javax.servlet.http.HttpServletRequest;
  **/
 
 @Controller
-@RequestMapping("/error")
+@RequestMapping(value = "/ERROR")
 public class ErrorController {
 
     /**
      * 404页面
      */
-//    @GetMapping(value = "/404")
-//    public String error404() {
-//        return "/error/404";
-//    }
+    @GetMapping(value = {"", "/404"})
+    public String error404() {
+        System.out.println("error");
+        return "error/404";
+    }
 
 
 

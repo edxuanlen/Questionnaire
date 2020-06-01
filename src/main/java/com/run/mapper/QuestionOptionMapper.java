@@ -39,4 +39,11 @@ public interface QuestionOptionMapper {
      */
     boolean updateQuestionOptionSelectNumber (BigInteger opId) throws Exception;
 
+
+    /**
+     * delete question option bu question id
+     * @param qId question id
+     * @throws Exception delete error
+     */
+    void deleteQuestionOptionByQuestionId(BigInteger qId) throws Exception;
 }
