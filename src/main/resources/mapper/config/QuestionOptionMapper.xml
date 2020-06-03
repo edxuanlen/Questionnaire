@@ -26,4 +26,8 @@
     <delete id="deleteQuestionOptionByQuestionId" >
         delete from question_option where q_id = #{qId};
     </delete>
+
+    <select id="getAllQuestionOptionsByQuestionId" resultType="com.run.pojo.QuestionOption">
+        select * from question_option where q_id = #{qId};
+    </select>
 </mapper>

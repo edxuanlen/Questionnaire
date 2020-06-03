@@ -2,21 +2,28 @@ package com.run.utils;
 
 import com.run.mapper.QuestionMapper;
 import com.run.mapper.QuestionOptionMapper;
+import com.run.mapper.QuestionnaireMapper;
 import com.run.pojo.Question;
 import com.run.pojo.QuestionOption;
+import io.swagger.annotations.Api;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.BigInteger;
+import java.util.List;
 import java.util.stream.Stream;
 
 /**
@@ -25,8 +32,20 @@ import java.util.stream.Stream;
  * @version 1.0
  */
 
-
+//@Component
 public class Excel {
+
+//    @Resource
+//    private QuestionnaireMapper questionnaireMapper;
+//
+//    @Autowired
+//    private QuestionMapper questionMapper;
+//
+//    @Autowired
+//    private QuestionOptionMapper questionOptionMapper;
+
+    private QuestionnaireMapper questionnaireMapper =
+            SpringUtil.getBean(QuestionnaireMapper.class);
 
     private QuestionMapper questionMapper =
             SpringUtil.getBean(QuestionMapper.class);
@@ -35,8 +54,10 @@ public class Excel {
             SpringUtil.getBean(QuestionOptionMapper.class);
 
     //  TODO 定义文件存放的根目录dir
-    String pathName = "./temp/";
-//    String pathName = "/tmp/";
+//    String pathName = "./temp/";
+
+    String pathName = "/tmp/";
+
     static String filename = new String();
     /**
      * 上传文件
@@ -130,4 +151,47 @@ public class Excel {
         inputStream.close();
         workBook.close();
     }
+
+    
+    public HSSFWorkbook export(BigInteger id) throws Exception{
+        List<Question> questions = questionnaireMapper.getAllQuestions(id);
+        HSSFWorkbook hssfWorkbook = new HSSFWorkbook();
+
+        Sheet sheet = hssfWorkbook.createSheet(questionnaireMapper.getQuestionnaireById(id).getName());
+
+        int col = 0;
+
+        for (Question question: questions){
+
+            if(question.getQuestionType().equals("subjective")) {
+                continue;
+            }
+
+            BigInteger qId = question.getQId();
+
+            List<QuestionOption> questionOptions = questionOptionMapper.getAllQuestionOptionsByQuestionId(qId);
+
+            String questionDescribe = question.getQDescribe();
+
+            Row row = sheet.createRow(col);
+            col = col + 1;
+            row.createCell(0).setCellValue(questionDescribe);
+
+            for (QuestionOption questionOption: questionOptions){
+
+                String opDescribe = questionOption.getOpDescribe();
+                String opSelected = String.valueOf(questionOption.getSelectedNum());
+
+                row = sheet.createRow(col);
+                col = col + 1;
+                row.createCell(0).setCellValue(opDescribe);
+                row.createCell(1).setCellValue(opSelected);
+//                System.out.println(opDescribe + ": " + opSelected);
+            }
+
+        }
+
+        return hssfWorkbook;
+    }
+
 }

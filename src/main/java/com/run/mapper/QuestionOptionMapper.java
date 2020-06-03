@@ -5,6 +5,7 @@ import com.run.pojo.QuestionOption;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.math.BigInteger;
+import java.util.List;
 
 /**
  * @author: edxuanlen
@@ -46,4 +47,12 @@ public interface QuestionOptionMapper {
      * @throws Exception delete error
      */
     void deleteQuestionOptionByQuestionId(BigInteger qId) throws Exception;
+
+    /**
+     * get all question options by question id
+     * @param qId question id
+     * @return a list of question options
+     * @throws Exception error
+     */
+    List<QuestionOption> getAllQuestionOptionsByQuestionId (BigInteger qId) throws Exception;
 }

@@ -7,7 +7,9 @@ import com.run.mapper.SubjectiveQuestionAnswerMapper;
 import com.run.pojo.Question;
 import com.run.pojo.QuestionOption;
 import com.run.pojo.Questionnaire;
+import com.run.utils.Excel;
 import io.swagger.annotations.Api;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.math.BigInteger;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -175,7 +178,7 @@ public class QuestionnaireController {
             } else {
                 return "error/404";
             }
-        } else if (type.equals("gettxt")) {
+        } else if ("gettxt".equals(type)) {
             String str = new String();
             for (Question question : list){
                 if (question.getQuestionType().equals("subjective")){
@@ -191,12 +194,6 @@ public class QuestionnaireController {
             }
             String fileName = System.currentTimeMillis() + ".txt";
 
-//            File f = new File("./temp/" + fileName);
-//            FileOutputStream fos1 = new FileOutputStream(f);
-//            OutputStreamWriter dos1 = new OutputStreamWriter(fos1);
-//            dos1.write(str);
-//            dos1.close();
-//
             OutputStream os = null;
             try {
                 response.reset();
@@ -208,7 +205,6 @@ public class QuestionnaireController {
                 os.write(bytes);
                 os.close();
             } catch (Exception ex) {
-//                logger.error("导出失败:", ex);
                 throw new RuntimeException("导出失败");
             }finally {
                 try {
@@ -216,9 +212,34 @@ public class QuestionnaireController {
                         os.close();
                     }
                 } catch (IOException ioEx) {
-//                    logger.error("导出失败:", ioEx);
+                    System.out.println(ioEx);
                 }
             }
+            response.sendRedirect("../../admin");
+            return "admin/backstage";
+        } else if ("exportExcel".equals(type)){
+            Excel excel = new Excel();
+            System.out.println("export excel");
+            HSSFWorkbook hssfWorkbook = excel.export(id);
+
+            String fileName = System.currentTimeMillis() + ".excel";
+            OutputStream outputStream = null;
+
+            try {
+                fileName = URLEncoder.encode(fileName, "UTF-8");
+
+                response.setContentType("application/vnd.ms-excel");
+                response.setHeader("Contet-dispostion", "attachmengt;filename=" + fileName);
+                outputStream = response.getOutputStream();
+                hssfWorkbook.write(outputStream);
+                outputStream.flush();
+                outputStream.close();
+            } catch (UnsupportedEncodingException e){
+                e.printStackTrace();
+            } catch (IOException e){
+                e.printStackTrace();
+            }
+
             response.sendRedirect("../../admin");
             return "admin/backstage";
         } else {
