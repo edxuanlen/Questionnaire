@@ -20,7 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private static final String KEY = "questionnaire";
+        private static final String KEY = "questionnaire";
 
     @Bean
     UserDetailsService customUserService(){
@@ -51,8 +51,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
          *
          */
         http.authorizeRequests().antMatchers("/").permitAll()
-            .antMatchers("/user/root").hasAnyAuthority("root")
-                .antMatchers("admin/**").hasAnyAuthority("root")
+            .antMatchers("/user/root").hasAnyAuthority("admin")
+                .antMatchers("admin/**").hasAnyAuthority("admin")
 //            .antMatchers("/management/**").hasRole("root")
 //            .antMatchers("/questionnaire/**").permitAll()
             .and().rememberMe().key(KEY).tokenValiditySeconds(1209600);

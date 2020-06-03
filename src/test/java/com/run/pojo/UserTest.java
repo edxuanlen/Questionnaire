@@ -4,6 +4,8 @@ import com.mysql.cj.jdbc.SuspendableXAConnection;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.lang.reflect.Field;
 
@@ -16,11 +18,16 @@ import static org.junit.jupiter.api.Assertions.*;
  * @Version 1.0
  **/
 class UserTest {
-//    private User user;
+
+
 
     @BeforeEach
     void setUp() {
+        BCryptPasswordEncoder encoder =new BCryptPasswordEncoder();
 
+        String pwt = (encoder.encode("QWERTY".trim()));
+//        userDao.create(user);
+        System.out.println(pwt);
     }
 
     @AfterEach
